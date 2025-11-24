@@ -5,3 +5,11 @@ Este repositório contém a entrega para o projeto final de Frontend II, onde se
 
 ## Requisitos funcionais
 
+- O sistema deve permitir CRUD de despesas
+- O sistema deve permitir registro de entradas e saídas financeiras
+- O sistema deve permitir CRUD de metas financeiras
+- O sistema deve ter um modal de detalhamento de gastos por categoria
+- O sistema deve permitir CRUD de categoria de gasto
+- O sistema deve ter gráficos/visualizações das referências mensais (entradas, saídas, categorias)
+- O sistema deve permitir CRUD de meta de gasto por categoria
+- O sistema deve gerar alerta ao ultrapassar valor de meta de gasto
