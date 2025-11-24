@@ -3,4 +3,5 @@
 # Gerenciador de Gastos
 Este repositório contém a entrega para o projeto final de Frontend II, onde seu tema correponde a ser um "Gerenciador de Gastos".
 
+## Requisitos funcionais
 
