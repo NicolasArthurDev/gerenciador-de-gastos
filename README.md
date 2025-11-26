@@ -3,6 +3,8 @@
 # Gerenciador de Gastos
 Este repositório contém a entrega para o projeto final de Frontend II, onde seu tema correponde a ser um "Gerenciador de Gastos".
 
+
+
 ## Requisitos funcionais
 
 - O sistema deve permitir CRUD de despesas
@@ -13,3 +15,8 @@ Este repositório contém a entrega para o projeto final de Frontend II, onde se
 - O sistema deve ter gráficos/visualizações das referências mensais (entradas, saídas, categorias)
 - O sistema deve permitir CRUD de meta de gasto por categoria
 - O sistema deve gerar alerta ao ultrapassar valor de meta de gasto
+
+> Responsáveis:
+> * Luis Renato Freitas de Almeida
+> * Nicolas Arthur Raulino Oliveira
+> * Nícoals Pitz
