@@ -1,11 +1,10 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Home from './app/home'
+import './index.css'
+import App from './App.tsx'
 
-const rootEl = document.getElementById('root') as HTMLElement
-
-createRoot(rootEl).render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
 )
