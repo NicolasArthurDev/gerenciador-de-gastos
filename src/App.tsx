@@ -1,10 +1,13 @@
 import './App.css';
+import Sidebar from './components/ui/sidebar';
+import Home from './pages/Home';
 
 function App() {
 	return (
-		<>
-			<h1 className="text-lg font-bold">Gerenciador de gastos</h1>
-		</>
+		<div className='grid grid-cols-12 w-full h-screen'>
+			<Sidebar/>
+			<Home/>
+		</div>
 	);
 }
 

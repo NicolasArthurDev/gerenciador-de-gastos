@@ -1,6 +1,8 @@
+interface ItemProps {
+  title : string
+}
 
-
-const Item = ( {title} ) => {
+const Item = ({title} : ItemProps ) => {
   return (
     <>
       <div className="outline-2 outline-emerald-500 p-4 rounded-2xl">
