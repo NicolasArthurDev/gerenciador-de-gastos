@@ -5,16 +5,13 @@ import Home from './pages/Home';
 
 function App() {
 	return (
-		<div className='grid grid-cols-12 w-full h-screen'>
-
-      <BrowserRouter>
-      <Sidebar/>
-        <Routes>
-          <Route path='/' Component={Home}></Route>
-        </Routes>
-      </BrowserRouter>
-
-			
+		<div className="grid grid-cols-12 w-full h-screen">
+			<BrowserRouter>
+				<Sidebar />
+				<Routes>
+					<Route path="/" Component={Home}></Route>
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }
