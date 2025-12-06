@@ -1,8 +1,7 @@
 export default function Home(){
     return (
-        <main className="col-span-10 p-6 bg-stone-900 w-full">
-            <h3 className="text-2xl font-semibold mb-4">Página Inicial</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, eum reprehenderit perferendis voluptatum maxime doloremque, omnis, similique ipsam dicta hic explicabo. Officiis nostrum hic facere, asperiores officia sunt. Quia reiciendis pariatur ipsum, quasi nam ullam doloribus? Quod, ullam accusamus quibusdam accusantium tempora dolore, corporis fugit modi minima dolores deleniti velit cupiditate repellat ipsum! Praesentium eos asperiores quibusdam minima ullam obcaecati eaque numquam et facere ipsum, repellendus, blanditiis iste nihil molestiae quo repudiandae alias earum animi cupiditate. Voluptas itaque magni perferendis, deleniti expedita ad fuga molestias doloremque deserunt mollitia sequi exercitationem sapiente! Officia distinctio optio autem dolores iste unde minima cupiditate placeat. Laudantium recusandae earum porro nesciunt, voluptas harum quis praesentium reprehenderit! Vel itaque, unde cumque corrupti facilis ducimus sint beatae voluptatibus sequi alias quaerat delectus autem quisquam deleniti quas veniam iste omnis hic! Corporis blanditiis quis sit architecto. Sequi, alias! Corrupti rerum architecto illo rem sunt mollitia perspiciatis iste dicta a ipsum suscipit eius expedita dolore cumque voluptatum, omnis dolores assumenda laborum explicabo similique? Unde iusto deserunt quam saepe, iure alias? Magnam eaque debitis eligendi esse, ipsa id doloribus omnis dolor quaerat! Qui possimus repellendus dolorum facilis, numquam dolor eos ipsam tenetur libero corporis deleniti error eveniet eius ducimus delectus?</p>
+        <main className="col-span-9 p-6 bg-stone-900 w-screen ">
+            <h3 className="text-2xl text-white font-semibold mb-4">Boas vindas!</h3>
         </main>
 
     )
