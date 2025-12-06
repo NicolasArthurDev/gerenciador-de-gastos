@@ -6,4 +6,5 @@ coverage
 *.log
 package-lock.json
 **/*.html
+.github/workflows/entrega.yml
 Avaliacao.md
