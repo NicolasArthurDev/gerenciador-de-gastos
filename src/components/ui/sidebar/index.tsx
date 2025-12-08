@@ -5,9 +5,9 @@ export default function Sidebar() {
 		<aside
 			className={`bg-stone-800 text-white p-4 flex flex-col min-h-screen overflow-y-auto col-span-2 px-8`}
 		>
-			<h2 className="text-3xl font-semibold mt-8 mb-6">
+			<h1 className="text-3xl font-semibold mt-8 mb-6">
 				Gerenciador de Gastos
-			</h2>
+			</h1>
 			<hr className="opacity-20" />
 
 			<nav className="flex-1 mt-8 mb-8">
