@@ -15,13 +15,25 @@ interface Expense {
 	date: string;
 }
 
+interface Goal {
+	id: string;
+	description: string;
+	targetAmount: string;
+	currentAmount: string;
+	deadline: string;
+}
+
 interface FinanceContextType {
 	entries: Entry[];
 	expenses: Expense[];
+	goals: Goal[];
 	addEntry: (entry: Entry) => void;
 	addExpense: (expense: Expense) => void;
+	addGoal: (goal: Goal) => void;
+	updateGoal: (id: string, currentAmount: string) => void;
 	deleteEntry: (id: string) => void;
 	deleteExpense: (id: string) => void;
+	deleteGoal: (id: string) => void;
 }
 
 const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
@@ -37,6 +49,11 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 		return saved ? JSON.parse(saved) : [];
 	});
 
+	const [goals, setGoals] = useState<Goal[]>(() => {
+		const saved = localStorage.getItem('goals');
+		return saved ? JSON.parse(saved) : [];
+	});
+
 	useEffect(() => {
 		localStorage.setItem('entries', JSON.stringify(entries));
 	}, [entries]);
@@ -44,6 +61,10 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 	useEffect(() => {
 		localStorage.setItem('expenses', JSON.stringify(expenses));
 	}, [expenses]);
+
+	useEffect(() => {
+		localStorage.setItem('goals', JSON.stringify(goals));
+	}, [goals]);
 
 	const addEntry = (entry: Entry) => {
 		setEntries([...entries, entry]);
@@ -61,15 +82,31 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 		setExpenses(expenses.filter((expense) => expense.id !== id));
 	};
 
+	const addGoal = (goal: Goal) => {
+		setGoals([...goals, goal]);
+	};
+
+	const updateGoal = (id: string, currentAmount: string) => {
+		setGoals(goals.map((goal) => (goal.id === id ? { ...goal, currentAmount } : goal)));
+	};
+
+	const deleteGoal = (id: string) => {
+		setGoals(goals.filter((goal) => goal.id !== id));
+	};
+
 	return (
 		<FinanceContext.Provider
 			value={{
 				entries,
 				expenses,
+				goals,
 				addEntry,
 				addExpense,
+				addGoal,
+				updateGoal,
 				deleteEntry,
 				deleteExpense,
+				deleteGoal,
 			}}
 		>
 			{children}

@@ -4,6 +4,7 @@ import Sidebar from './components/ui/sidebar';
 import Home from './pages/Home';
 import Entradas from './pages/Entradas';
 import Despesas from './pages/Despesas';
+import Metas from './pages/Metas';
 import { FinanceProvider } from './contexts/FinanceContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 						<Route path="/" Component={Home}></Route>
 						<Route path="/entradas" Component={Entradas}></Route>
 						<Route path="/despesas" Component={Despesas}></Route>
+						<Route path="/metas" Component={Metas}></Route>
 					</Routes>
 				</BrowserRouter>
 			</div>

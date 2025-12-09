@@ -21,6 +21,11 @@ export default function Sidebar() {
       id: 2,
       label: "Despesas",
       path: "/despesas"
+    },
+    {
+      id: 3,
+      label: "Metas",
+      path: "/metas"
     }
   ]
 
