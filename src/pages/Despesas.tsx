@@ -1,5 +1,5 @@
 import { useFinance } from '../contexts/FinanceContext';
-import Form from '../components/ui/form';
+import { ExpenseForm } from '../components/ui/form';
 import History from '../components/ui/history';
 
 export default function Despesas() {
@@ -17,7 +17,7 @@ export default function Despesas() {
 		<main className="col-span-10 p-6 bg-stone-900 overflow-y-auto">
 			<h3 className="text-2xl text-white font-semibold mb-6">Despesas</h3>
 
-			<Form type="expense" onSubmit={handleSubmit} />
+			<ExpenseForm onSubmit={handleSubmit} />
 
 			<History type="expense" items={expenses} onDelete={deleteExpense} />
 		</main>
