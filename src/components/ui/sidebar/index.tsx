@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
 
-  let [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
   const links = [
     {
