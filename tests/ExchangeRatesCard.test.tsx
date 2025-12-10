@@ -17,36 +17,38 @@ describe('ExchangeRatesCard', () => {
 	});
 
 	it('deve exibir "Carregando..." quando está buscando as cotações', () => {
-		global.fetch = vi.fn(() =>
-			Promise.resolve({
-				json: () => new Promise(() => {}), 
-			}),
-		) as any;
+		global.fetch = vi.fn(
+			() =>
+				Promise.resolve({
+					json: () => new Promise(() => {}),
+				}) as Promise<Response>,
+		);
 
 		render(<ExchangeRatesCard />);
 		expect(screen.getByText('Carregando...')).toBeInTheDocument();
 	});
 
 	it('deve exibir as cotações quando a API retorna com sucesso', async () => {
-		global.fetch = vi.fn((url: string) => {
-			if (url.includes('exchangerate-api')) {
+		global.fetch = vi.fn((url: string | URL | Request) => {
+			const urlString = typeof url === 'string' ? url : url.toString();
+			if (urlString.includes('exchangerate-api')) {
 				return Promise.resolve({
 					json: () =>
 						Promise.resolve({
 							rates: { BRL: 5.5 },
 						}),
-				});
+				}) as Promise<Response>;
 			}
-			if (url.includes('coingecko')) {
+			if (urlString.includes('coingecko')) {
 				return Promise.resolve({
 					json: () =>
 						Promise.resolve({
 							bitcoin: { usd: 50000, brl: 275000 },
 						}),
-				});
+				}) as Promise<Response>;
 			}
 			return Promise.reject(new Error('URL não reconhecida'));
-		}) as any;
+		});
 
 		render(<ExchangeRatesCard />);
 
