@@ -1,16 +1,34 @@
-import { useFinance } from '../contexts/FinanceContext';
+import { useEffect, useState } from 'react';
 import { ExpenseForm } from '../components/ui/form';
 import History from '../components/ui/history';
 
+interface Expense {
+	id: string;
+	description: string;
+	amount: string;
+	date: string;
+}
+
 export default function Despesas() {
-	const { expenses, addExpense, deleteExpense } = useFinance();
+	const [expenses, setExpenses] = useState<Expense[]>(() => {
+		const saved = localStorage.getItem('expenses');
+		return saved ? JSON.parse(saved) : [];
+	});
+
+	useEffect(() => {
+		localStorage.setItem('expenses', JSON.stringify(expenses));
+	}, [expenses]);
 
 	const handleSubmit = (data: { description: string; amount: string; date: string }) => {
-		const newExpense = {
+		const newExpense: Expense = {
 			id: Date.now().toString(),
 			...data,
 		};
-		addExpense(newExpense);
+		setExpenses((prev) => [...prev, newExpense]);
+	};
+
+	const handleDelete = (id: string) => {
+		setExpenses((prev) => prev.filter((expense) => expense.id !== id));
 	};
 
 	return (
@@ -19,7 +37,7 @@ export default function Despesas() {
 
 			<ExpenseForm onSubmit={handleSubmit} />
 
-			<History type="expense" items={expenses} onDelete={deleteExpense} />
+			<History type="expense" items={expenses} onDelete={handleDelete} />
 		</main>
 	);
 }

@@ -1,8 +1,20 @@
 import { ArrowUpRight } from 'lucide-react';
-import { useFinance } from '../../../contexts/FinanceContext';
+import { useEffect, useState } from 'react';
+
+interface Entry {
+	id: number;
+	description: string;
+	amount: string;
+	date: string;
+}
 
 export default function RevenueCard() {
-	const { entries } = useFinance();
+	const [entries, setEntries] = useState<Entry[]>([]);
+
+	useEffect(() => {
+		const savedEntries = localStorage.getItem('entries');
+		setEntries(savedEntries ? JSON.parse(savedEntries) : []);
+	}, []);
 
 	const total = entries.reduce((sum, entry) => sum + parseFloat(entry.amount || '0'), 0);
 

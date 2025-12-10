@@ -1,10 +1,34 @@
 import { Activity } from 'lucide-react';
-import { useFinance } from '../../../contexts/FinanceContext';
+import { useEffect, useState } from 'react';
+
+interface Entry {
+	id: number;
+	description: string;
+	amount: string;
+	date: string;
+}
+
+interface Expense {
+	id: number;
+	description: string;
+	amount: string;
+	date: string;
+}
+
+type Transaction = (Entry | Expense) & { type: 'income' | 'expense' };
 
 export default function RecentActivityCard() {
-	const { entries, expenses } = useFinance();
+	const [entries, setEntries] = useState<Entry[]>([]);
+	const [expenses, setExpenses] = useState<Expense[]>([]);
 
-	const allTransactions = [
+	useEffect(() => {
+		const savedEntries = localStorage.getItem('entries');
+		const savedExpenses = localStorage.getItem('expenses');
+		setEntries(savedEntries ? JSON.parse(savedEntries) : []);
+		setExpenses(savedExpenses ? JSON.parse(savedExpenses) : []);
+	}, []);
+
+	const allTransactions: Transaction[] = [
 		...entries.map((e) => ({ ...e, type: 'income' as const })),
 		...expenses.map((e) => ({ ...e, type: 'expense' as const })),
 	]

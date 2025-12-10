@@ -1,12 +1,24 @@
 
 import { Calendar } from 'lucide-react';
-import { useFinance } from '../../../contexts/FinanceContext';
+import { useEffect, useState } from 'react';
+
+interface Goal {
+	id: number;
+	title: string;
+	targetAmount: string;
+	currentAmount: string;
+}
 
 export default function SavingsGoalCard() {
-	const { goals } = useFinance();
+	const [goals, setGoals] = useState<Goal[]>([]);
 
-	const totalTarget = goals.reduce((sum, goal) => sum + parseFloat(goal.targetAmount), 0);
-	const totalCurrent = goals.reduce((sum, goal) => sum + parseFloat(goal.currentAmount), 0);
+	useEffect(() => {
+		const savedGoals = localStorage.getItem('goals');
+		setGoals(savedGoals ? JSON.parse(savedGoals) : []);
+	}, []);
+
+	const totalTarget = goals.reduce((sum, goal) => sum + parseFloat(goal.targetAmount || '0'), 0);
+	const totalCurrent = goals.reduce((sum, goal) => sum + parseFloat(goal.currentAmount || '0'), 0);
 	const percentage = totalTarget > 0 ? (totalCurrent / totalTarget) * 100 : 0;
 	const activeGoals = goals.length;
 

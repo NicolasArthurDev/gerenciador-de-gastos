@@ -2,10 +2,22 @@
 
 
 import { TrendingDown } from 'lucide-react';
-import { useFinance } from '../../../contexts/FinanceContext';
+import { useEffect, useState } from 'react';
+
+interface Expense {
+	id: number;
+	description: string;
+	amount: string;
+	date: string;
+}
 
 export default function ExpensesCard() {
-	const { expenses } = useFinance();
+	const [expenses, setExpenses] = useState<Expense[]>([]);
+
+	useEffect(() => {
+		const savedExpenses = localStorage.getItem('expenses');
+		setExpenses(savedExpenses ? JSON.parse(savedExpenses) : []);
+	}, []);
 
 	const total = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount || '0'), 0);
 

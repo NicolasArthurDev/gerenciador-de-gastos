@@ -1,10 +1,30 @@
-
-
+import { useEffect, useState } from 'react';
 import { DollarSign, TrendingUp } from 'lucide-react';
-import { useFinance } from '../../../contexts/FinanceContext';
+
+interface Entry {
+	id: string;
+	description: string;
+	amount: string;
+	date: string;
+}
+
+interface Expense {
+	id: string;
+	description: string;
+	amount: string;
+	date: string;
+}
 
 export default function TotalBalanceCard() {
-	const { entries, expenses } = useFinance();
+	const [entries, setEntries] = useState<Entry[]>([]);
+	const [expenses, setExpenses] = useState<Expense[]>([]);
+
+	useEffect(() => {
+		const savedEntries = localStorage.getItem('entries');
+		const savedExpenses = localStorage.getItem('expenses');
+		setEntries(savedEntries ? JSON.parse(savedEntries) : []);
+		setExpenses(savedExpenses ? JSON.parse(savedExpenses) : []);
+	}, []);
 
 	const totalIncome = entries.reduce((sum, entry) => sum + parseFloat(entry.amount || '0'), 0);
 	const totalExpense = expenses.reduce(
