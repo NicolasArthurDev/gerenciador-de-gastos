@@ -16,7 +16,7 @@ export default function SavingsGoalCard() {
 	const activeGoals = goals.length;
 
 	return (
-		<div className="col-span-6 md:col-span-3 lg:col-span-2 row-span-2 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow select-none">
+		<div className="col-span-6 md:col-span-3 lg:col-span-2 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow select-none">
 			<div className="flex flex-col justify-between h-full">
 				<div>
 					<Calendar

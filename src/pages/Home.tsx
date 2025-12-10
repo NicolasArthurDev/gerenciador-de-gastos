@@ -7,6 +7,7 @@ import RecentActivityCard from '../components/ui/dashboard/RecentActivityCard';
 import SavingsGoalCard from '../components/ui/dashboard/SavingsGoalCard';
 import InvestmentsCard from '../components/ui/dashboard/InvestmentsCard';
 import UpcomingBillsCard from '../components/ui/dashboard/UpcomingBillsCard';
+import ExchangeRatesCard from '../components/ui/dashboard/ExchangeRatesCard';
 
 export default function Home() {
 	return (
@@ -19,6 +20,7 @@ export default function Home() {
 				<TotalBalanceCard />
 				<RevenueCard />
 				<ExpensesCard />
+				<ExchangeRatesCard />
 				<ExpenseDistributionCard />
 				<ActiveCardsCard />
 				<RecentActivityCard />

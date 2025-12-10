@@ -12,7 +12,7 @@ export default function RecentActivityCard() {
 		.slice(0, 5);
 
 	return (
-		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-2 bg-stone-800 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
+		<div className="col-span-12 md:col-span-6 lg:col-span-4 bg-stone-800 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
 			<div className="flex items-center justify-between mb-3">
 				<h4 className="text-white font-semibold truncate">
 					Atividade Recente
