@@ -25,7 +25,9 @@ export default function History({ type, items, onDelete }: HistoryProps) {
 			</div>
 			<div className="divide-y divide-stone-700">
 				{items.length === 0 ? (
-					<div className="p-8 text-center text-stone-400">{emptyMessage}</div>
+					<div className="p-8 text-center text-stone-400">
+						{emptyMessage}
+					</div>
 				) : (
 					items.map((item) => (
 						<div
@@ -33,14 +35,21 @@ export default function History({ type, items, onDelete }: HistoryProps) {
 							className="p-4 hover:bg-stone-750 transition-colors flex justify-between items-center"
 						>
 							<div className="flex-1">
-								<p className="text-white font-medium">{item.description}</p>
+								<p className="text-white font-medium">
+									{item.description}
+								</p>
 								<p className="text-stone-400 text-sm">
-									{new Date(item.date).toLocaleDateString('pt-BR')}
+									{new Date(item.date).toLocaleDateString(
+										'pt-BR',
+									)}
 								</p>
 							</div>
 							<div className="flex items-center gap-4">
-								<span className={`${colorClass} font-semibold text-lg`}>
-									{prefix} R$ {parseFloat(item.amount).toFixed(2)}
+								<span
+									className={`${colorClass} font-semibold text-lg`}
+								>
+									{prefix} R${' '}
+									{parseFloat(item.amount).toFixed(2)}
 								</span>
 								<button
 									onClick={() => onDelete(item.id)}

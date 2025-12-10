@@ -1,34 +1,10 @@
 import { Activity } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-interface Entry {
-	id: number;
-	description: string;
-	amount: string;
-	date: string;
-}
-
-interface Expense {
-	id: number;
-	description: string;
-	amount: string;
-	date: string;
-}
-
-type Transaction = (Entry | Expense) & { type: 'income' | 'expense' };
+import { useFinance } from '../../../contexts/useFinance';
 
 export default function RecentActivityCard() {
-	const [entries, setEntries] = useState<Entry[]>([]);
-	const [expenses, setExpenses] = useState<Expense[]>([]);
+	const { entries, expenses } = useFinance();
 
-	useEffect(() => {
-		const savedEntries = localStorage.getItem('entries');
-		const savedExpenses = localStorage.getItem('expenses');
-		setEntries(savedEntries ? JSON.parse(savedEntries) : []);
-		setExpenses(savedExpenses ? JSON.parse(savedExpenses) : []);
-	}, []);
-
-	const allTransactions: Transaction[] = [
+	const allTransactions = [
 		...entries.map((e) => ({ ...e, type: 'income' as const })),
 		...expenses.map((e) => ({ ...e, type: 'expense' as const })),
 	]
@@ -38,7 +14,9 @@ export default function RecentActivityCard() {
 	return (
 		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-2 bg-stone-800 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
 			<div className="flex items-center justify-between mb-3">
-				<h4 className="text-white font-semibold truncate">Atividade Recente</h4>
+				<h4 className="text-white font-semibold truncate">
+					Atividade Recente
+				</h4>
 				<Activity className="text-cyan-400 flex-shrink-0" size={20} />
 			</div>
 			<div className="space-y-2">
@@ -57,7 +35,9 @@ export default function RecentActivityCard() {
 							</span>
 							<span
 								className={`font-medium whitespace-nowrap ${
-									transaction.type === 'income' ? 'text-green-400' : 'text-red-400'
+									transaction.type === 'income'
+										? 'text-green-400'
+										: 'text-red-400'
 								}`}
 							>
 								{transaction.type === 'income' ? '+' : '-'}R${' '}

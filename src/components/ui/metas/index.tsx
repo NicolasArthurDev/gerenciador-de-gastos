@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
-interface Goal {
-	id: string;
-	description: string;
-	targetAmount: string;
-	currentAmount: string;
-	deadline: string;
-}
-
 interface GoalFormProps {
-	onSubmit: (data: { description: string; targetAmount: string; deadline: string }) => void;
+	onSubmit: (data: {
+		description: string;
+		targetAmount: string;
+		deadline: string;
+	}) => void;
 }
 
 export function GoalForm({ onSubmit }: GoalFormProps) {
@@ -32,7 +28,9 @@ export function GoalForm({ onSubmit }: GoalFormProps) {
 			<h4 className="text-white font-semibold mb-4">Nova Meta</h4>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<div>
-					<label className="block text-stone-300 text-sm mb-2">Descrição da Meta</label>
+					<label className="block text-stone-300 text-sm mb-2">
+						Descrição da Meta
+					</label>
 					<input
 						type="text"
 						value={description}
@@ -43,7 +41,9 @@ export function GoalForm({ onSubmit }: GoalFormProps) {
 				</div>
 				<div className="grid grid-cols-2 gap-4">
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Valor Alvo</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Valor Alvo
+						</label>
 						<input
 							type="number"
 							step="0.01"
@@ -54,7 +54,9 @@ export function GoalForm({ onSubmit }: GoalFormProps) {
 						/>
 					</div>
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Data Limite</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Data Limite
+						</label>
 						<input
 							type="date"
 							value={deadline}

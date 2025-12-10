@@ -1,9 +1,11 @@
-
-
 import { useState } from 'react';
 
 interface BaseFormProps {
-	onSubmit: (data: { description: string; amount: string; date: string }) => void;
+	onSubmit: (data: {
+		description: string;
+		amount: string;
+		date: string;
+	}) => void;
 }
 
 export function EntryForm({ onSubmit }: BaseFormProps) {
@@ -21,11 +23,15 @@ export function EntryForm({ onSubmit }: BaseFormProps) {
 
 	return (
 		<div className="bg-stone-800 rounded-xl p-6 mb-6 border border-stone-700">
-			<h4 className="text-white font-semibold text-lg mb-4">Adicionar Nova Entrada</h4>
+			<h4 className="text-white font-semibold text-lg mb-4">
+				Adicionar Nova Entrada
+			</h4>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Descrição</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Descrição
+						</label>
 						<input
 							type="text"
 							value={description}
@@ -36,7 +42,9 @@ export function EntryForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Valor (R$)</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Valor (R$)
+						</label>
 						<input
 							type="number"
 							step="0.01"
@@ -48,7 +56,9 @@ export function EntryForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Data</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Data
+						</label>
 						<input
 							type="date"
 							value={date}
@@ -84,11 +94,15 @@ export function ExpenseForm({ onSubmit }: BaseFormProps) {
 
 	return (
 		<div className="bg-stone-800 rounded-xl p-6 mb-6 border border-stone-700">
-			<h4 className="text-white font-semibold text-lg mb-4">Adicionar Nova Despesa</h4>
+			<h4 className="text-white font-semibold text-lg mb-4">
+				Adicionar Nova Despesa
+			</h4>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Descrição</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Descrição
+						</label>
 						<input
 							type="text"
 							value={description}
@@ -99,7 +113,9 @@ export function ExpenseForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Valor (R$)</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Valor (R$)
+						</label>
 						<input
 							type="number"
 							step="0.01"
@@ -111,7 +127,9 @@ export function ExpenseForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 					<div>
-						<label className="block text-stone-300 text-sm mb-2">Data</label>
+						<label className="block text-stone-300 text-sm mb-2">
+							Data
+						</label>
 						<input
 							type="date"
 							value={date}

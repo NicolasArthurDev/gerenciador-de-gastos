@@ -1,35 +1,16 @@
-import { useEffect, useState } from 'react';
 import { DollarSign, TrendingUp } from 'lucide-react';
-
-interface Entry {
-	id: string;
-	description: string;
-	amount: string;
-	date: string;
-}
-
-interface Expense {
-	id: string;
-	description: string;
-	amount: string;
-	date: string;
-}
+import { useFinance } from '../../../contexts/useFinance';
 
 export default function TotalBalanceCard() {
-	const [entries, setEntries] = useState<Entry[]>([]);
-	const [expenses, setExpenses] = useState<Expense[]>([]);
+	const { entries, expenses } = useFinance();
 
-	useEffect(() => {
-		const savedEntries = localStorage.getItem('entries');
-		const savedExpenses = localStorage.getItem('expenses');
-		setEntries(savedEntries ? JSON.parse(savedEntries) : []);
-		setExpenses(savedExpenses ? JSON.parse(savedExpenses) : []);
-	}, []);
-
-	const totalIncome = entries.reduce((sum, entry) => sum + parseFloat(entry.amount || '0'), 0);
+	const totalIncome = entries.reduce(
+		(sum, entry) => sum + parseFloat(entry.amount || '0'),
+		0,
+	);
 	const totalExpense = expenses.reduce(
 		(sum, expense) => sum + parseFloat(expense.amount || '0'),
-		0
+		0,
 	);
 	const balance = totalIncome - totalExpense;
 
@@ -49,7 +30,8 @@ export default function TotalBalanceCard() {
 					<div className="flex items-center gap-2 text-emerald-100">
 						<TrendingUp size={16} />
 						<span className="text-sm select-none">
-							{entries.length} entradas, {expenses.length} despesas
+							{entries.length} entradas, {expenses.length}{' '}
+							despesas
 						</span>
 					</div>
 				</div>

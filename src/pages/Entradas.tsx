@@ -1,34 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useFinance } from '../contexts/useFinance';
 import { EntryForm } from '../components/ui/form';
 import History from '../components/ui/history';
 
-interface Entry {
-	id: string;
-	description: string;
-	amount: string;
-	date: string;
-}
-
 export default function Entradas() {
-	const [entries, setEntries] = useState<Entry[]>(() => {
-		const saved = localStorage.getItem('entries');
-		return saved ? JSON.parse(saved) : [];
-	});
+	const { entries, addEntry, deleteEntry } = useFinance();
 
-	useEffect(() => {
-		localStorage.setItem('entries', JSON.stringify(entries));
-	}, [entries]);
-
-	const handleSubmit = (data: { description: string; amount: string; date: string }) => {
-		const newEntry: Entry = {
+	const handleSubmit = (data: {
+		description: string;
+		amount: string;
+		date: string;
+	}) => {
+		addEntry({
 			id: Date.now().toString(),
 			...data,
-		};
-		setEntries((prev) => [...prev, newEntry]);
+		});
 	};
 
 	const handleDelete = (id: string) => {
-		setEntries((prev) => prev.filter((entry) => entry.id !== id));
+		deleteEntry(id);
 	};
 
 	return (

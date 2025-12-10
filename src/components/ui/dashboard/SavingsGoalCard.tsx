@@ -1,24 +1,17 @@
-
 import { Calendar } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-interface Goal {
-	id: number;
-	title: string;
-	targetAmount: string;
-	currentAmount: string;
-}
+import { useFinance } from '../../../contexts/useFinance';
 
 export default function SavingsGoalCard() {
-	const [goals, setGoals] = useState<Goal[]>([]);
+	const { goals } = useFinance();
 
-	useEffect(() => {
-		const savedGoals = localStorage.getItem('goals');
-		setGoals(savedGoals ? JSON.parse(savedGoals) : []);
-	}, []);
-
-	const totalTarget = goals.reduce((sum, goal) => sum + parseFloat(goal.targetAmount || '0'), 0);
-	const totalCurrent = goals.reduce((sum, goal) => sum + parseFloat(goal.currentAmount || '0'), 0);
+	const totalTarget = goals.reduce(
+		(sum, goal) => sum + parseFloat(goal.targetAmount || '0'),
+		0,
+	);
+	const totalCurrent = goals.reduce(
+		(sum, goal) => sum + parseFloat(goal.currentAmount || '0'),
+		0,
+	);
 	const percentage = totalTarget > 0 ? (totalCurrent / totalTarget) * 100 : 0;
 	const activeGoals = goals.length;
 
@@ -26,13 +19,16 @@ export default function SavingsGoalCard() {
 		<div className="col-span-6 md:col-span-3 lg:col-span-2 row-span-2 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow select-none">
 			<div className="flex flex-col justify-between h-full">
 				<div>
-					<Calendar className="text-white opacity-80 mb-3" size={24} />
+					<Calendar
+						className="text-white opacity-80 mb-3"
+						size={24}
+					/>
 					<p className="text-amber-100 text-sm mb-2 truncate">
 						{activeGoals === 0
 							? 'Nenhuma Meta'
 							: activeGoals === 1
-							? '1 Meta Ativa'
-							: `${activeGoals} Metas Ativas`}
+								? '1 Meta Ativa'
+								: `${activeGoals} Metas Ativas`}
 					</p>
 					<p className="text-3xl font-bold text-white mb-4 truncate">
 						R$ {totalCurrent.toFixed(2)}

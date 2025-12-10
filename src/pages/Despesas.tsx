@@ -1,34 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useFinance } from '../contexts/useFinance';
 import { ExpenseForm } from '../components/ui/form';
 import History from '../components/ui/history';
 
-interface Expense {
-	id: string;
-	description: string;
-	amount: string;
-	date: string;
-}
-
 export default function Despesas() {
-	const [expenses, setExpenses] = useState<Expense[]>(() => {
-		const saved = localStorage.getItem('expenses');
-		return saved ? JSON.parse(saved) : [];
-	});
+	const { expenses, addExpense, deleteExpense } = useFinance();
 
-	useEffect(() => {
-		localStorage.setItem('expenses', JSON.stringify(expenses));
-	}, [expenses]);
-
-	const handleSubmit = (data: { description: string; amount: string; date: string }) => {
-		const newExpense: Expense = {
+	const handleSubmit = (data: {
+		description: string;
+		amount: string;
+		date: string;
+	}) => {
+		addExpense({
 			id: Date.now().toString(),
 			...data,
-		};
-		setExpenses((prev) => [...prev, newExpense]);
+		});
 	};
 
 	const handleDelete = (id: string) => {
-		setExpenses((prev) => prev.filter((expense) => expense.id !== id));
+		deleteExpense(id);
 	};
 
 	return (

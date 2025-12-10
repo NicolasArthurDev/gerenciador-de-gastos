@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface Goal {
 	id: string;
@@ -40,7 +40,10 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 				</div>
 			) : (
 				goals.map((goal) => {
-					const percentage = calculatePercentage(goal.currentAmount, goal.targetAmount);
+					const percentage = calculatePercentage(
+						goal.currentAmount,
+						goal.targetAmount,
+					);
 					const current = parseFloat(goal.currentAmount);
 					const target = parseFloat(goal.targetAmount);
 					const remaining = target - current;
@@ -50,7 +53,9 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 						<div
 							key={goal.id}
 							className={`bg-stone-800 rounded-xl border ${
-								isCompleted ? 'border-green-500' : 'border-stone-700'
+								isCompleted
+									? 'border-green-500'
+									: 'border-stone-700'
 							} p-6 hover:bg-stone-750 transition-colors`}
 						>
 							<div className="flex justify-between items-start mb-4">
@@ -59,7 +64,10 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 										{goal.description}
 									</h5>
 									<p className="text-stone-400 text-sm">
-										Prazo: {new Date(goal.deadline).toLocaleDateString('pt-BR')}
+										Prazo:{' '}
+										{new Date(
+											goal.deadline,
+										).toLocaleDateString('pt-BR')}
 									</p>
 								</div>
 								{isCompleted && (
@@ -72,23 +80,32 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 							<div className="mb-4">
 								<div className="flex justify-between text-sm mb-2">
 									<span className="text-stone-300">
-										R$ {parseFloat(goal.currentAmount).toFixed(2)}
+										R${' '}
+										{parseFloat(goal.currentAmount).toFixed(
+											2,
+										)}
 									</span>
 									<span className="text-stone-300">
-										R$ {parseFloat(goal.targetAmount).toFixed(2)}
+										R${' '}
+										{parseFloat(goal.targetAmount).toFixed(
+											2,
+										)}
 									</span>
 								</div>
 								<div className="w-full bg-stone-700 rounded-full h-3">
 									<div
 										className={`h-3 rounded-full transition-all ${
-											isCompleted ? 'bg-green-500' : 'bg-amber-500'
+											isCompleted
+												? 'bg-green-500'
+												: 'bg-amber-500'
 										}`}
 										style={{ width: `${percentage}%` }}
 									></div>
 								</div>
 								<p className="text-stone-400 text-xs mt-2">
 									{percentage.toFixed(1)}% alcançado
-									{!isCompleted && ` • Faltam R$ ${remaining.toFixed(2)}`}
+									{!isCompleted &&
+										` • Faltam R$ ${remaining.toFixed(2)}`}
 								</p>
 							</div>
 
@@ -99,12 +116,16 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 											type="number"
 											step="0.01"
 											value={editAmount}
-											onChange={(e) => setEditAmount(e.target.value)}
+											onChange={(e) =>
+												setEditAmount(e.target.value)
+											}
 											className="flex-1 bg-stone-700 text-white rounded-lg px-3 py-2 border border-stone-600 focus:border-amber-500 focus:outline-none text-sm"
 											placeholder="Novo valor atual"
 										/>
 										<button
-											onClick={() => handleUpdateAmount(goal.id)}
+											onClick={() =>
+												handleUpdateAmount(goal.id)
+											}
 											className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
 										>
 											Salvar
@@ -124,14 +145,18 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 										<button
 											onClick={() => {
 												setEditingId(goal.id);
-												setEditAmount(goal.currentAmount);
+												setEditAmount(
+													goal.currentAmount,
+												);
 											}}
 											className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm transition-colors"
 										>
 											Atualizar Progresso
 										</button>
 										<button
-											onClick={() => onDeleteGoal(goal.id)}
+											onClick={() =>
+												onDeleteGoal(goal.id)
+											}
 											className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
 										>
 											Remover
