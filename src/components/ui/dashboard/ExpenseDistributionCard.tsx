@@ -13,28 +13,28 @@ export default function ExpenseDistributionCard() {
 				<div>
 					<div className="flex justify-between text-sm mb-1">
 						<span className="text-stone-300 truncate">
-							Alimentação
+							Gastos Necessários
 						</span>
-						<span className="text-white font-medium ml-2">35%</span>
+						<span className="text-white font-medium ml-2">50%</span>
 					</div>
 					<div className="w-full bg-stone-700 rounded-full h-2">
-						<div className="bg-blue-500 h-2 rounded-full w-[35%]"></div>
+						<div className="bg-blue-500 h-2 rounded-full w-[50%]"></div>
 					</div>
 				</div>
 				<div>
 					<div className="flex justify-between text-sm mb-1">
 						<span className="text-stone-300 truncate">
-							Transporte
+							Gastos Variáveis
 						</span>
-						<span className="text-white font-medium ml-2">25%</span>
+						<span className="text-white font-medium ml-2">10%</span>
 					</div>
 					<div className="w-full bg-stone-700 rounded-full h-2">
-						<div className="bg-purple-500 h-2 rounded-full w-[25%]"></div>
+						<div className="bg-purple-500 h-2 rounded-full w-[10%]"></div>
 					</div>
 				</div>
 				<div>
 					<div className="flex justify-between text-sm mb-1">
-						<span className="text-stone-300 truncate">Moradia</span>
+						<span className="text-stone-300 truncate">Investimentos</span>
 						<span className="text-white font-medium ml-2">30%</span>
 					</div>
 					<div className="w-full bg-stone-700 rounded-full h-2">
@@ -43,7 +43,7 @@ export default function ExpenseDistributionCard() {
 				</div>
 				<div>
 					<div className="flex justify-between text-sm mb-1">
-						<span className="text-stone-300 truncate">Outros</span>
+						<span className="text-stone-300 truncate">Diversão</span>
 						<span className="text-white font-medium ml-2">10%</span>
 					</div>
 					<div className="w-full bg-stone-700 rounded-full h-2">
