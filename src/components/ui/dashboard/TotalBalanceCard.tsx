@@ -15,7 +15,7 @@ export default function TotalBalanceCard() {
 	const balance = totalIncome - totalExpense;
 
 	return (
-		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-2 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-1 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
 			<div className="flex flex-col justify-between h-full">
 				<div className="flex items-center justify-between">
 					<span className="text-emerald-100 text-sm font-medium select-none">
