@@ -12,9 +12,15 @@ interface GoalListProps {
 	goals: Goal[];
 	onUpdateGoal: (id: string, currentAmount: string) => void;
 	onDeleteGoal: (id: string) => void;
+	onEditGoal?: (goal: Goal) => void;
 }
 
-export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
+export function GoalList({
+	goals,
+	onUpdateGoal,
+	onDeleteGoal,
+	onEditGoal,
+}: GoalListProps) {
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [editAmount, setEditAmount] = useState('');
 
@@ -141,26 +147,38 @@ export function GoalList({ goals, onUpdateGoal, onDeleteGoal }: GoalListProps) {
 										</button>
 									</div>
 								) : (
-									<div className="flex gap-2">
-										<button
-											onClick={() => {
-												setEditingId(goal.id);
-												setEditAmount(
-													goal.currentAmount,
-												);
-											}}
-											className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm transition-colors"
-										>
-											Atualizar Progresso
-										</button>
-										<button
-											onClick={() =>
-												onDeleteGoal(goal.id)
-											}
-											className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
-										>
-											Remover
-										</button>
+									<div className="flex flex-col gap-2">
+										<div className="flex gap-2">
+											<button
+												onClick={() => {
+													setEditingId(goal.id);
+													setEditAmount(
+														goal.currentAmount,
+													);
+												}}
+												className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg text-sm transition-colors"
+											>
+												Atualizar Progresso
+											</button>
+											{onEditGoal && (
+												<button
+													onClick={() =>
+														onEditGoal(goal)
+													}
+													className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+												>
+													Editar
+												</button>
+											)}
+											<button
+												onClick={() =>
+													onDeleteGoal(goal.id)
+												}
+												className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+											>
+												Remover
+											</button>
+										</div>
 									</div>
 								)}
 							</div>

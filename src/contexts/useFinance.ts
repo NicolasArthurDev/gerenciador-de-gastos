@@ -19,8 +19,22 @@ export function useFinance() {
 		setExpenses([...expenses, expense]);
 	};
 
+	const updateEntry = (id: string, updatedEntry: Entry) => {
+		setEntries(
+			entries.map((entry) => (entry.id === id ? updatedEntry : entry)),
+		);
+	};
+
 	const deleteEntry = (id: string) => {
 		setEntries(entries.filter((entry) => entry.id !== id));
+	};
+
+	const updateExpense = (id: string, updatedExpense: Expense) => {
+		setExpenses(
+			expenses.map((expense) =>
+				expense.id === id ? updatedExpense : expense,
+			),
+		);
 	};
 
 	const deleteExpense = (id: string) => {
@@ -39,6 +53,12 @@ export function useFinance() {
 		);
 	};
 
+	const updateGoalComplete = (id: string, updatedGoal: Goal) => {
+		setGoals(
+			goals.map((goal) => (goal.id === id ? updatedGoal : goal)),
+		);
+	};
+
 	const deleteGoal = (id: string) => {
 		setGoals(goals.filter((goal) => goal.id !== id));
 	};
@@ -48,9 +68,12 @@ export function useFinance() {
 		expenses,
 		goals,
 		addEntry,
+		updateEntry,
 		addExpense,
+		updateExpense,
 		addGoal,
 		updateGoal,
+		updateGoalComplete,
 		deleteEntry,
 		deleteExpense,
 		deleteGoal,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface BaseFormProps {
 	onSubmit: (data: {
@@ -6,25 +6,48 @@ interface BaseFormProps {
 		amount: string;
 		date: string;
 	}) => void;
+	initialData?: {
+		description: string;
+		amount: string;
+		date: string;
+	};
+	onCancel?: () => void;
+	isEditing?: boolean;
 }
 
-export function EntryForm({ onSubmit }: BaseFormProps) {
-	const [description, setDescription] = useState('');
-	const [amount, setAmount] = useState('');
-	const [date, setDate] = useState('');
+export function EntryForm({
+	onSubmit,
+	initialData,
+	onCancel,
+	isEditing = false,
+}: BaseFormProps) {
+	const [description, setDescription] = useState(initialData?.description || '');
+	const [amount, setAmount] = useState(initialData?.amount || '');
+	const [date, setDate] = useState(initialData?.date || '');
+
+	// Atualizar campos quando initialData mudar
+	useEffect(() => {
+		if (initialData) {
+			setDescription(initialData.description);
+			setAmount(initialData.amount);
+			setDate(initialData.date);
+		}
+	}, [initialData]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		onSubmit({ description, amount, date });
-		setDescription('');
-		setAmount('');
-		setDate('');
+		if (!isEditing) {
+			setDescription('');
+			setAmount('');
+			setDate('');
+		}
 	};
 
 	return (
 		<div className="bg-stone-800 rounded-xl p-6 mb-6 border border-stone-700">
 			<h4 className="text-white font-semibold text-lg mb-4">
-				Adicionar Nova Entrada
+				{isEditing ? 'Editar Entrada' : 'Adicionar Nova Entrada'}
 			</h4>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -68,34 +91,61 @@ export function EntryForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 				</div>
-				<button
-					type="submit"
-					className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
-				>
-					Adicionar Entrada
-				</button>
+				<div className="flex gap-2">
+					<button
+						type="submit"
+						className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
+					>
+						{isEditing ? 'Atualizar Entrada' : 'Adicionar Entrada'}
+					</button>
+					{isEditing && onCancel && (
+						<button
+							type="button"
+							onClick={onCancel}
+							className="bg-stone-600 hover:bg-stone-700 text-white px-6 py-2 rounded-lg transition-colors cursor-pointer"
+						>
+							Cancelar
+						</button>
+					)}
+				</div>
 			</form>
 		</div>
 	);
 }
 
-export function ExpenseForm({ onSubmit }: BaseFormProps) {
-	const [description, setDescription] = useState('');
-	const [amount, setAmount] = useState('');
-	const [date, setDate] = useState('');
+export function ExpenseForm({
+	onSubmit,
+	initialData,
+	onCancel,
+	isEditing = false,
+}: BaseFormProps) {
+	const [description, setDescription] = useState(initialData?.description || '');
+	const [amount, setAmount] = useState(initialData?.amount || '');
+	const [date, setDate] = useState(initialData?.date || '');
+
+	// Atualizar campos quando initialData mudar
+	useEffect(() => {
+		if (initialData) {
+			setDescription(initialData.description);
+			setAmount(initialData.amount);
+			setDate(initialData.date);
+		}
+	}, [initialData]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		onSubmit({ description, amount, date });
-		setDescription('');
-		setAmount('');
-		setDate('');
+		if (!isEditing) {
+			setDescription('');
+			setAmount('');
+			setDate('');
+		}
 	};
 
 	return (
 		<div className="bg-stone-800 rounded-xl p-6 mb-6 border border-stone-700">
 			<h4 className="text-white font-semibold text-lg mb-4">
-				Adicionar Nova Despesa
+				{isEditing ? 'Editar Despesa' : 'Adicionar Nova Despesa'}
 			</h4>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -139,12 +189,23 @@ export function ExpenseForm({ onSubmit }: BaseFormProps) {
 						/>
 					</div>
 				</div>
-				<button
-					type="submit"
-					className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
-				>
-					Adicionar Despesa
-				</button>
+				<div className="flex gap-2">
+					<button
+						type="submit"
+						className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
+					>
+						{isEditing ? 'Atualizar Despesa' : 'Adicionar Despesa'}
+					</button>
+					{isEditing && onCancel && (
+						<button
+							type="button"
+							onClick={onCancel}
+							className="bg-stone-600 hover:bg-stone-700 text-white px-6 py-2 rounded-lg transition-colors cursor-pointer"
+						>
+							Cancelar
+						</button>
+					)}
+				</div>
 			</form>
 		</div>
 	);

@@ -7,9 +7,15 @@ interface HistoryProps {
 		date: string;
 	}>;
 	onDelete: (id: string) => void;
+	onEdit?: (item: {
+		id: string;
+		description: string;
+		amount: string;
+		date: string;
+	}) => void;
 }
 
-export default function History({ type, items, onDelete }: HistoryProps) {
+export default function History({ type, items, onDelete, onEdit }: HistoryProps) {
 	const isEntry = type === 'entry';
 	const title = isEntry ? 'Histórico de Entradas' : 'Histórico de Despesas';
 	const emptyMessage = isEntry
@@ -51,12 +57,22 @@ export default function History({ type, items, onDelete }: HistoryProps) {
 									{prefix} R${' '}
 									{parseFloat(item.amount).toFixed(2)}
 								</span>
-								<button
-									onClick={() => onDelete(item.id)}
-									className="text-red-400 hover:text-red-300 px-3 py-1 rounded transition-colors"
-								>
-									Remover
-								</button>
+								<div className="flex gap-2">
+									{onEdit && (
+										<button
+											onClick={() => onEdit(item)}
+											className="text-blue-400 hover:text-blue-300 px-3 py-1 rounded transition-colors"
+										>
+											Editar
+										</button>
+									)}
+									<button
+										onClick={() => onDelete(item.id)}
+										className="text-red-400 hover:text-red-300 px-3 py-1 rounded transition-colors"
+									>
+										Remover
+									</button>
+								</div>
 							</div>
 						</div>
 					))
