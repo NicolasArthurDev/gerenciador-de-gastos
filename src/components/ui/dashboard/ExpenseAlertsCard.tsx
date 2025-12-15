@@ -12,7 +12,7 @@ const categoryConfig = {
 } as const;
 
 export default function ExpenseAlertsCard() {
-	const { expenses, distribution, entries } = useFinance();
+	const { expenses, distribution } = useFinance();
 
 	const alerts = useMemo(() => {
 		const totalExpenses = expenses.reduce(
@@ -30,7 +30,9 @@ export default function ExpenseAlertsCard() {
 		};
 
 		expenses.forEach((expense) => {
-			categoryTotals[expense.category] += parseFloat(expense.amount || '0');
+			categoryTotals[expense.category] += parseFloat(
+				expense.amount || '0',
+			);
 		});
 
 		const alertsList: Array<{
@@ -76,7 +78,8 @@ export default function ExpenseAlertsCard() {
 							✓ Tudo dentro do limite
 						</p>
 						<p className="text-stone-400 text-xs">
-							Suas despesas estão dentro da distribuição configurada.
+							Suas despesas estão dentro da distribuição
+							configurada.
 						</p>
 					</div>
 				) : (
@@ -97,7 +100,8 @@ export default function ExpenseAlertsCard() {
 											{config.label}
 										</p>
 										<p className="text-stone-300 text-xs">
-											Ultrapassou o limite em {excess.toFixed(2)}%
+											Ultrapassou o limite em{' '}
+											{excess.toFixed(2)}%
 										</p>
 									</div>
 									<AlertTriangle
@@ -107,17 +111,25 @@ export default function ExpenseAlertsCard() {
 								</div>
 								<div className="space-y-1">
 									<div className="flex justify-between text-xs">
-										<span className="text-stone-400">Atual:</span>
+										<span className="text-stone-400">
+											Atual:
+										</span>
 										<span className="text-yellow-400 font-medium">
 											{alert.percentage.toFixed(2)}%
 										</span>
 									</div>
 									<div className="flex justify-between text-xs">
-										<span className="text-stone-400">Limite:</span>
-										<span className="text-stone-300">{alert.limit}%</span>
+										<span className="text-stone-400">
+											Limite:
+										</span>
+										<span className="text-stone-300">
+											{alert.limit}%
+										</span>
 									</div>
 									<div className="flex justify-between text-xs">
-										<span className="text-stone-400">Valor:</span>
+										<span className="text-stone-400">
+											Valor:
+										</span>
 										<span className="text-white font-medium">
 											R$ {alert.amount.toFixed(2)}
 										</span>
@@ -131,4 +143,3 @@ export default function ExpenseAlertsCard() {
 		</Card>
 	);
 }
-

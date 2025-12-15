@@ -1,12 +1,7 @@
 import type { Entry, Expense } from '../contexts/FinanceContext';
 
-export const calculateTotal = (
-	items: (Entry | Expense)[],
-): number => {
-	return items.reduce(
-		(sum, item) => sum + parseFloat(item.amount || '0'),
-		0,
-	);
+export const calculateTotal = (items: (Entry | Expense)[]): number => {
+	return items.reduce((sum, item) => sum + parseFloat(item.amount || '0'), 0);
 };
 
 export const formatCurrency = (value: number): string => {

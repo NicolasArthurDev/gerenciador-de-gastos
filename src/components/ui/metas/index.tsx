@@ -21,8 +21,12 @@ export function GoalForm({
 	onCancel,
 	isEditing = false,
 }: GoalFormProps) {
-	const [description, setDescription] = useState(initialData?.description || '');
-	const [targetAmount, setTargetAmount] = useState(initialData?.targetAmount || '');
+	const [description, setDescription] = useState(
+		initialData?.description || '',
+	);
+	const [targetAmount, setTargetAmount] = useState(
+		initialData?.targetAmount || '',
+	);
 	const [deadline, setDeadline] = useState(initialData?.deadline || '');
 
 	// Atualizar campos quando initialData mudar

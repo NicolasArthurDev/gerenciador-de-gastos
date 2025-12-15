@@ -13,9 +13,9 @@ const categoryConfig = {
 export default function Redistribuicao() {
 	const { distribution, updateDistribution, entries } = useFinance();
 	const [draft, setDraft] = useState(distribution);
-	
+
 	const totalEntries = useMemo(() => calculateTotal(entries), [entries]);
-	
+
 	const total = useMemo(
 		() =>
 			draft.necessarios +
@@ -68,13 +68,16 @@ export default function Redistribuicao() {
 
 			<div className="bg-stone-800 rounded-xl border border-stone-700 p-6 mb-6">
 				<p className="text-stone-300 text-sm mb-4">
-					Ajuste as porcentagens de distribuição dos seus gastos. A soma deve
-					ser exatamente 100%.
+					Ajuste as porcentagens de distribuição dos seus gastos. A
+					soma deve ser exatamente 100%.
 				</p>
 
 				<div className="grid grid-cols-2 gap-6">
 					{Object.entries(categoryConfig).map(([key, cfg]) => (
-						<div key={key} className="space-y-3 bg-stone-700/30 p-4 rounded-lg">
+						<div
+							key={key}
+							className="space-y-3 bg-stone-700/30 p-4 rounded-lg"
+						>
 							<div className="flex items-center justify-between">
 								<span className="text-stone-200 text-base font-medium">
 									{cfg.label}
@@ -84,7 +87,10 @@ export default function Redistribuicao() {
 								</span>
 							</div>
 							<div className="text-xs text-stone-400">
-								Máximo: R$ {maxAmounts[key as keyof typeof maxAmounts].toFixed(2)}
+								Máximo: R${' '}
+								{maxAmounts[
+									key as keyof typeof maxAmounts
+								].toFixed(2)}
 							</div>
 							<input
 								type="range"
@@ -115,7 +121,9 @@ export default function Redistribuicao() {
 							<div className="w-full bg-stone-700 rounded-full h-2">
 								<div
 									className={`${cfg.color} h-2 rounded-full transition-all`}
-									style={{ width: `${draft[key as keyof typeof draft]}%` }}
+									style={{
+										width: `${draft[key as keyof typeof draft]}%`,
+									}}
 								></div>
 							</div>
 						</div>
@@ -135,7 +143,8 @@ export default function Redistribuicao() {
 
 				{hasError && (
 					<p className="text-red-400 text-sm bg-red-900/20 p-3 rounded-lg border border-red-500/30 mt-4">
-						A soma deve ser exatamente 100%. Atualmente está em {total}%.
+						A soma deve ser exatamente 100%. Atualmente está em{' '}
+						{total}%.
 					</p>
 				)}
 
@@ -166,12 +175,21 @@ export default function Redistribuicao() {
 				</h4>
 				<div className="space-y-4">
 					{Object.entries(categoryConfig).map(([key, cfg]) => {
-						const maxAmount = (totalEntries * distribution[key as keyof typeof distribution]) / 100;
+						const maxAmount =
+							(totalEntries *
+								distribution[
+									key as keyof typeof distribution
+								]) /
+							100;
 						return (
 							<DistributionItem
 								key={key}
 								label={cfg.label}
-								percentage={distribution[key as keyof typeof distribution]}
+								percentage={
+									distribution[
+										key as keyof typeof distribution
+									]
+								}
 								color={cfg.color}
 								maxAmount={maxAmount}
 							/>
@@ -182,4 +200,3 @@ export default function Redistribuicao() {
 		</main>
 	);
 }
-

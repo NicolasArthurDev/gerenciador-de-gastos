@@ -66,7 +66,7 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 			? parsed.map((expense) => ({
 					...expense,
 					category: expense.category || 'variaveis',
-			  }))
+				}))
 			: [];
 	});
 
@@ -75,17 +75,19 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 		return saved ? JSON.parse(saved) : [];
 	});
 
-	const [distribution, setDistribution] = useState<ExpenseDistribution>(() => {
-		const saved = localStorage.getItem('expenseDistribution');
-		return saved
-			? JSON.parse(saved)
-			: {
-					necessarios: 50,
-					variaveis: 10,
-					investimentos: 30,
-					diversao: 10,
-			  };
-	});
+	const [distribution, setDistribution] = useState<ExpenseDistribution>(
+		() => {
+			const saved = localStorage.getItem('expenseDistribution');
+			return saved
+				? JSON.parse(saved)
+				: {
+						necessarios: 50,
+						variaveis: 10,
+						investimentos: 30,
+						diversao: 10,
+					};
+		},
+	);
 
 	useEffect(() => {
 		localStorage.setItem('entries', JSON.stringify(entries));
@@ -100,7 +102,10 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 	}, [goals]);
 
 	useEffect(() => {
-		localStorage.setItem('expenseDistribution', JSON.stringify(distribution));
+		localStorage.setItem(
+			'expenseDistribution',
+			JSON.stringify(distribution),
+		);
 	}, [distribution]);
 
 	return (

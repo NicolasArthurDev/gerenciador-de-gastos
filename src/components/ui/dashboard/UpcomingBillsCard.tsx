@@ -11,7 +11,12 @@ interface Bill {
 }
 
 const upcomingBills: Bill[] = [
-	{ name: 'Aluguel', dueDate: 'Vence em 5 dias', amount: 'R$ 1.200,00', isUrgent: true },
+	{
+		name: 'Aluguel',
+		dueDate: 'Vence em 5 dias',
+		amount: 'R$ 1.200,00',
+		isUrgent: true,
+	},
 	{ name: 'Energia', dueDate: 'Vence em 12 dias', amount: 'R$ 180,00' },
 	{ name: 'Internet', dueDate: 'Vence em 18 dias', amount: 'R$ 99,90' },
 ];

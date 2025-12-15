@@ -46,7 +46,9 @@ export default function ExpenseDistributionCard() {
 					<DistributionItem
 						key={key}
 						label={cfg.label}
-						percentage={distribution[key as keyof typeof distribution]}
+						percentage={
+							distribution[key as keyof typeof distribution]
+						}
 						color={cfg.color}
 						maxAmount={maxAmounts[key as keyof typeof maxAmounts]}
 					/>

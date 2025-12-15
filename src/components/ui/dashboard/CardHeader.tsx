@@ -28,7 +28,12 @@ export default function CardHeader({
 			<h3 className={`${titleClasses[titleSize]} text-white truncate`}>
 				{title}
 			</h3>
-			{Icon && <Icon className={`${iconColor} flex-shrink-0`} size={iconSize} />}
+			{Icon && (
+				<Icon
+					className={`${iconColor} flex-shrink-0`}
+					size={iconSize}
+				/>
+			)}
 		</div>
 	);
 }

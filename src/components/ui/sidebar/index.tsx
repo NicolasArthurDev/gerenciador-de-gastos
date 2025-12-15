@@ -80,8 +80,12 @@ export default function Sidebar() {
 					<p className="text-lg ">Usuario</p>
 				</div>
 				<div className="flex flex-row justify-between">
-					<p className="text-stone-300 hover:text-white cursor-pointer">Minha conta</p>
-					<button className="text-red-500 hover:text-red-700 cursor-pointer">Sair</button>
+					<p className="text-stone-300 hover:text-white cursor-pointer">
+						Minha conta
+					</p>
+					<button className="text-red-500 hover:text-red-700 cursor-pointer">
+						Sair
+					</button>
 				</div>
 				<div className="mt-6 text-xs text-stone-300">v1.0.0</div>
 			</div>

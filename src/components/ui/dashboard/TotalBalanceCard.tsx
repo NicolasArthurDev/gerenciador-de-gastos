@@ -1,7 +1,10 @@
 import { DollarSign, TrendingUp } from 'lucide-react';
 import { useFinance } from '../../../contexts/useFinance';
 import Card from './Card';
-import { calculateBalance, formatCurrency } from '../../../utils/financeCalculations';
+import {
+	calculateBalance,
+	formatCurrency,
+} from '../../../utils/financeCalculations';
 
 export default function TotalBalanceCard() {
 	const { entries, expenses } = useFinance();
@@ -28,7 +31,8 @@ export default function TotalBalanceCard() {
 					<div className="flex items-center gap-2 text-emerald-100">
 						<TrendingUp size={16} />
 						<span className="text-sm select-none">
-							{entries.length} entradas, {expenses.length} despesas
+							{entries.length} entradas, {expenses.length}{' '}
+							despesas
 						</span>
 					</div>
 				</div>

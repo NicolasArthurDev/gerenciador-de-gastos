@@ -15,7 +15,9 @@ export default function DistributionItem({
 		<div>
 			<div className="flex justify-between text-sm mb-1">
 				<span className="text-stone-300 truncate">{label}</span>
-				<span className="text-white font-medium ml-2">{percentage}%</span>
+				<span className="text-white font-medium ml-2">
+					{percentage}%
+				</span>
 			</div>
 			{maxAmount !== undefined && (
 				<div className="text-xs text-stone-400 mb-1">
@@ -31,4 +33,3 @@ export default function DistributionItem({
 		</div>
 	);
 }
-

@@ -7,10 +7,7 @@ const calculateGoalsTotal = (
 	goals: Array<{ targetAmount?: string; currentAmount?: string }>,
 	field: 'targetAmount' | 'currentAmount',
 ): number => {
-	return goals.reduce(
-		(sum, goal) => sum + parseFloat(goal[field] || '0'),
-		0,
-	);
+	return goals.reduce((sum, goal) => sum + parseFloat(goal[field] || '0'), 0);
 };
 
 const calculatePercentage = (current: number, target: number): number => {
@@ -32,7 +29,10 @@ export default function SavingsGoalCard() {
 		>
 			<div className="flex flex-col justify-between h-full">
 				<div>
-					<Calendar className="text-white opacity-80 mb-3" size={24} />
+					<Calendar
+						className="text-white opacity-80 mb-3"
+						size={24}
+					/>
 					<p className="text-amber-100 text-sm mb-2 truncate">
 						{activeGoals === 0
 							? 'Nenhuma Meta'

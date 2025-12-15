@@ -27,7 +27,12 @@ type ExpenseHistoryProps = {
 
 type HistoryProps = EntryHistoryProps | ExpenseHistoryProps;
 
-export default function History({ type, items, onDelete, onEdit }: HistoryProps) {
+export default function History({
+	type,
+	items,
+	onDelete,
+	onEdit,
+}: HistoryProps) {
 	const isEntry = type === 'entry';
 	const title = isEntry ? 'Histórico de Entradas' : 'Histórico de Despesas';
 	const emptyMessage = isEntry
@@ -72,9 +77,11 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 										<span className="text-xs text-stone-400">
 											{
 												categoryLabels[
-													(item as HistoryItem & {
-														category: ExpenseCategory;
-													}).category
+													(
+														item as HistoryItem & {
+															category: ExpenseCategory;
+														}
+													).category
 												]
 											}
 										</span>
@@ -91,7 +98,13 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 								<div className="flex gap-2">
 									{onEdit && (
 										<button
-											onClick={() => onEdit(item as HistoryItem & { category: ExpenseCategory })}
+											onClick={() =>
+												onEdit(
+													item as HistoryItem & {
+														category: ExpenseCategory;
+													},
+												)
+											}
 											className="text-blue-400 hover:text-blue-300 px-3 py-1 rounded transition-colors"
 										>
 											Editar
@@ -107,8 +120,8 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 							</div>
 						</div>
 					))
-					)}
-				</div>
+				)}
+			</div>
 		</div>
 	);
 }

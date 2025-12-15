@@ -20,7 +20,10 @@ function App() {
 						<Route path="/entradas" Component={Entradas}></Route>
 						<Route path="/despesas" Component={Despesas}></Route>
 						<Route path="/metas" Component={Metas}></Route>
-						<Route path="/redistribuicao" Component={Redistribuicao}></Route>
+						<Route
+							path="/redistribuicao"
+							Component={Redistribuicao}
+						></Route>
 						<Route path="*" Component={NotFound}></Route>
 					</Routes>
 				</BrowserRouter>

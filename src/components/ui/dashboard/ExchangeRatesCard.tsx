@@ -65,9 +65,7 @@ export default function ExchangeRatesCard() {
 	return (
 		<div className="col-span-12 md:col-span-6 lg:col-span-4 bg-stone-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
 			<div className="flex items-center justify-between mb-4">
-				<h3 className="text-lg font-semibold text-white">
-					Cotações
-				</h3>
+				<h3 className="text-lg font-semibold text-white">Cotações</h3>
 				<Coins className="text-yellow-400" size={24} />
 			</div>
 
@@ -81,7 +79,9 @@ export default function ExchangeRatesCard() {
 					<div className="flex items-center justify-between p-3 bg-stone-700/50 rounded-lg">
 						<div className="flex items-center gap-2">
 							<DollarSign className="text-green-400" size={20} />
-							<span className="text-stone-300 text-sm">USD/BRL</span>
+							<span className="text-stone-300 text-sm">
+								USD/BRL
+							</span>
 						</div>
 						{rates.usdToBrl ? (
 							<span className="text-white font-semibold">
@@ -96,11 +96,14 @@ export default function ExchangeRatesCard() {
 					<div className="flex items-center justify-between p-3 bg-stone-700/50 rounded-lg">
 						<div className="flex items-center gap-2">
 							<Coins className="text-orange-400" size={20} />
-							<span className="text-stone-300 text-sm">BTC/USD</span>
+							<span className="text-stone-300 text-sm">
+								BTC/USD
+							</span>
 						</div>
 						{rates.btcToUsd ? (
 							<span className="text-white font-semibold">
-								${rates.btcToUsd.toLocaleString('pt-BR', {
+								$
+								{rates.btcToUsd.toLocaleString('pt-BR', {
 									minimumFractionDigits: 2,
 									maximumFractionDigits: 2,
 								})}
@@ -114,7 +117,9 @@ export default function ExchangeRatesCard() {
 					<div className="flex items-center justify-between p-3 bg-stone-700/50 rounded-lg">
 						<div className="flex items-center gap-2">
 							<Coins className="text-orange-400" size={20} />
-							<span className="text-stone-300 text-sm">BTC/BRL</span>
+							<span className="text-stone-300 text-sm">
+								BTC/BRL
+							</span>
 						</div>
 						{rates.btcToBrl ? (
 							<span className="text-white font-semibold">
@@ -133,5 +138,3 @@ export default function ExchangeRatesCard() {
 		</div>
 	);
 }
-
-

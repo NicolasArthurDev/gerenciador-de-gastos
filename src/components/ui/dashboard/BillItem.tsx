@@ -14,7 +14,9 @@ export default function BillItem({
 	return (
 		<div className="flex justify-between items-center gap-3">
 			<div className="min-w-0 flex-1">
-				<p className="text-white text-sm font-medium truncate">{name}</p>
+				<p className="text-white text-sm font-medium truncate">
+					{name}
+				</p>
 				<p className="text-stone-400 text-xs truncate">{dueDate}</p>
 			</div>
 			<span

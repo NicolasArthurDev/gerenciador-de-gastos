@@ -22,8 +22,7 @@ export function useFinance() {
 		setExpenses,
 		setGoals,
 		setDistribution,
-	} =
-		context;
+	} = context;
 
 	const addEntry = (entry: Entry) => {
 		setEntries([...entries, entry]);
@@ -68,9 +67,7 @@ export function useFinance() {
 	};
 
 	const updateGoalComplete = (id: string, updatedGoal: Goal) => {
-		setGoals(
-			goals.map((goal) => (goal.id === id ? updatedGoal : goal)),
-		);
+		setGoals(goals.map((goal) => (goal.id === id ? updatedGoal : goal)));
 	};
 
 	const deleteGoal = (id: string) => {

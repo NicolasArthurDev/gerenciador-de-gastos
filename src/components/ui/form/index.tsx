@@ -27,7 +27,9 @@ export function EntryForm({
 	onCancel,
 	isEditing = false,
 }: BaseFormProps) {
-	const [description, setDescription] = useState(initialData?.description || '');
+	const [description, setDescription] = useState(
+		initialData?.description || '',
+	);
 	const [amount, setAmount] = useState(initialData?.amount || '');
 	const [date, setDate] = useState(initialData?.date || '');
 
@@ -125,7 +127,9 @@ export function ExpenseForm({
 	onCancel,
 	isEditing = false,
 }: ExpenseFormProps) {
-	const [description, setDescription] = useState(initialData?.description || '');
+	const [description, setDescription] = useState(
+		initialData?.description || '',
+	);
 	const [amount, setAmount] = useState(initialData?.amount || '');
 	const [date, setDate] = useState(initialData?.date || '');
 	const [category, setCategory] = useState<ExpenseCategory>(
@@ -211,7 +215,9 @@ export function ExpenseForm({
 							className="w-full bg-stone-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 							required
 						>
-							<option value="necessarios">Gastos Necessários</option>
+							<option value="necessarios">
+								Gastos Necessários
+							</option>
 							<option value="variaveis">Gastos Variáveis</option>
 							{/* <option value="investimentos">Investimentos</option> */}
 							<option value="diversao">Diversão</option>
