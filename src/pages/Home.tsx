@@ -22,8 +22,8 @@ export default function Home() {
 				<ExpensesCard />
 				<ExchangeRatesCard />
 				<ExpenseDistributionCard />
-				<ActiveCardsCard />
 				<RecentActivityCard />
+				<ActiveCardsCard />
 				<SavingsGoalCard />
 				<InvestmentsCard />
 				<UpcomingBillsCard />

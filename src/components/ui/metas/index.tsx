@@ -65,12 +65,14 @@ export function GoalForm({ onSubmit }: GoalFormProps) {
 						/>
 					</div>
 				</div>
-				<button
-					type="submit"
-					className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-colors"
-				>
-					Adicionar Meta
-				</button>
+				<div className="flex items-center justify-start">
+					<button
+						type="submit"
+						className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
+					>
+						Adicionar Meta
+					</button>
+				</div>
 			</form>
 		</div>
 	);

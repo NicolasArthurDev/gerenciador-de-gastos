@@ -25,7 +25,6 @@ export default function Despesas() {
 			<h3 className="text-2xl text-white font-semibold mb-6">Despesas</h3>
 
 			<ExpenseForm onSubmit={handleSubmit} />
-
 			<History type="expense" items={expenses} onDelete={handleDelete} />
 		</main>
 	);

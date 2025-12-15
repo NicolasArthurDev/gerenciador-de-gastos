@@ -38,7 +38,7 @@ export default function SavingsGoalCard() {
 					</p>
 				</div>
 				<div>
-					<div className="w-full bg-amber-800 rounded-full h-3 mb-2">
+					<div className="w-full bg-stone-800 rounded-full h-3 mb-2">
 						<div
 							className="bg-white h-3 rounded-full transition-all"
 							style={{ width: `${Math.min(percentage, 100)}%` }}

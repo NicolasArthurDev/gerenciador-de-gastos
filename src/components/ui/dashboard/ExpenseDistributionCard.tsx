@@ -2,7 +2,7 @@ import { PieChart } from 'lucide-react';
 
 export default function ExpenseDistributionCard() {
 	return (
-		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-2 bg-stone-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
+		<div className="col-span-12 md:col-span-6 lg:col-span-4 row-span-1 bg-stone-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
 			<div className="flex items-center justify-between mb-4">
 				<h4 className="text-white font-semibold truncate">
 					Distribuição de Gastos
