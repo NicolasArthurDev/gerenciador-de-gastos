@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFinance } from '../contexts/useFinance';
-import type { Expense } from '../contexts/FinanceContext';
+import type { Expense, ExpenseCategory } from '../contexts/FinanceContext';
 import { ExpenseForm } from '../components/ui/form';
 import History from '../components/ui/history';
 
@@ -12,6 +12,7 @@ export default function Despesas() {
 		description: string;
 		amount: string;
 		date: string;
+		category: ExpenseCategory;
 	}) => {
 		if (editingExpense) {
 			updateExpense(editingExpense.id, {
@@ -54,6 +55,7 @@ export default function Despesas() {
 								description: editingExpense.description,
 								amount: editingExpense.amount,
 								date: editingExpense.date,
+								category: editingExpense.category,
 							}
 						: undefined
 				}

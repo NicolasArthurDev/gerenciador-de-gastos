@@ -2,6 +2,7 @@ import TotalBalanceCard from '../components/ui/dashboard/TotalBalanceCard';
 import RevenueCard from '../components/ui/dashboard/RevenueCard';
 import ExpensesCard from '../components/ui/dashboard/ExpensesCard';
 import ExpenseDistributionCard from '../components/ui/dashboard/ExpenseDistributionCard';
+import ExpenseAlertsCard from '../components/ui/dashboard/ExpenseAlertsCard';
 import ActiveCardsCard from '../components/ui/dashboard/ActiveCardsCard';
 import RecentActivityCard from '../components/ui/dashboard/RecentActivityCard';
 import SavingsGoalCard from '../components/ui/dashboard/SavingsGoalCard';
@@ -22,6 +23,7 @@ export default function Home() {
 				<ExpensesCard />
 				<ExchangeRatesCard />
 				<ExpenseDistributionCard />
+				<ExpenseAlertsCard />
 				<RecentActivityCard />
 				<ActiveCardsCard />
 				<SavingsGoalCard />

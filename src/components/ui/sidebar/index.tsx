@@ -1,9 +1,8 @@
 import { CircleUserRound } from 'lucide-react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Sidebar() {
-	const [activeTab, setActiveTab] = useState(0);
+	const location = useLocation();
 
 	const links = [
 		{
@@ -23,8 +22,23 @@ export default function Sidebar() {
 		},
 		{
 			id: 3,
+			label: 'Contas a pagar',
+			path: '/contas-a-pagar',
+		},
+		{
+			id: 4,
 			label: 'Metas',
 			path: '/metas',
+		},
+		{
+			id: 5,
+			label: 'Investimentos',
+			path: '/investimentos',
+		},
+		{
+			id: 6,
+			label: 'Redistribuição',
+			path: '/redistribuicao',
 		},
 	];
 
@@ -39,21 +53,23 @@ export default function Sidebar() {
 				<hr className="opacity-20" />
 				<nav className="w-full">
 					<ul className="flex flex-col gap-3 mt-6 w-full md:col-span-1">
-						{links.map((link) => (
-							<li key={link.id} className="w-full">
-								<Link
-									onClick={() => setActiveTab(link.id)}
-									className={`w-full items-center block py-4 px-6 text-left font-medium transition-all duration-300 border-l-4 rounded ${
-										activeTab === link.id
-											? 'text-blue-500 bg-stone-200'
-											: 'text-stone-600 hover:text-stone-900 hover:bg-stone-200'
-									}`}
-									to={link.path}
-								>
-									{link.label}
-								</Link>
-							</li>
-						))}
+						{links.map((link) => {
+							const isActive = location.pathname === link.path;
+							return (
+								<li key={link.id} className="w-full">
+									<Link
+										className={`w-full items-center block py-4 px-6 text-left font-medium transition-all duration-300  rounded ${
+											isActive
+												? 'text-black bg-stone-200'
+												: 'text-stone-300 hover:text-cyan-800 hover:bg-stone-200'
+										}`}
+										to={link.path}
+									>
+										{link.label}
+									</Link>
+								</li>
+							);
+						})}
 					</ul>
 				</nav>
 			</div>
@@ -61,11 +77,11 @@ export default function Sidebar() {
 				<hr className="opacity-20" />
 				<div className="flex flex-row mt-6 mb-6 gap-4 items-center">
 					<CircleUserRound size={40} />
-					<p className="text-lg ">Mello</p>
+					<p className="text-lg ">Usuario</p>
 				</div>
 				<div className="flex flex-row justify-between">
-					<p>Minha conta</p>
-					<p>Sair</p>
+					<p className="text-stone-300 hover:text-white cursor-pointer">Minha conta</p>
+					<button className="text-red-500 hover:text-red-700 cursor-pointer">Sair</button>
 				</div>
 				<div className="mt-6 text-xs text-stone-300">v1.0.0</div>
 			</div>

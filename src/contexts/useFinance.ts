@@ -1,5 +1,10 @@
 import { useContext } from 'react';
-import type { Entry, Expense, Goal } from './FinanceContext';
+import type {
+	Entry,
+	Expense,
+	Goal,
+	ExpenseDistribution,
+} from './FinanceContext';
 import { FinanceContext } from './FinanceContext';
 
 export function useFinance() {
@@ -8,7 +13,16 @@ export function useFinance() {
 		throw new Error('useFinance must be used within FinanceProvider');
 	}
 
-	const { entries, expenses, goals, setEntries, setExpenses, setGoals } =
+	const {
+		entries,
+		expenses,
+		goals,
+		distribution,
+		setEntries,
+		setExpenses,
+		setGoals,
+		setDistribution,
+	} =
 		context;
 
 	const addEntry = (entry: Entry) => {
@@ -63,10 +77,15 @@ export function useFinance() {
 		setGoals(goals.filter((goal) => goal.id !== id));
 	};
 
+	const updateDistribution = (nextDistribution: ExpenseDistribution) => {
+		setDistribution(nextDistribution);
+	};
+
 	return {
 		entries,
 		expenses,
 		goals,
+		distribution,
 		addEntry,
 		updateEntry,
 		addExpense,
@@ -77,5 +96,6 @@ export function useFinance() {
 		deleteEntry,
 		deleteExpense,
 		deleteGoal,
+		updateDistribution,
 	};
 }

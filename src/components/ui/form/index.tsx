@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
+import type { ExpenseCategory } from '../../../contexts/FinanceContext';
+
+interface BaseFormData {
+	description: string;
+	amount: string;
+	date: string;
+}
 
 interface BaseFormProps {
-	onSubmit: (data: {
-		description: string;
-		amount: string;
-		date: string;
-	}) => void;
-	initialData?: {
-		description: string;
-		amount: string;
-		date: string;
-	};
+	onSubmit: (data: BaseFormData) => void;
+	initialData?: BaseFormData;
+	onCancel?: () => void;
+	isEditing?: boolean;
+}
+
+interface ExpenseFormProps {
+	onSubmit: (data: BaseFormData & { category: ExpenseCategory }) => void;
+	initialData?: BaseFormData & { category?: ExpenseCategory };
 	onCancel?: () => void;
 	isEditing?: boolean;
 }
@@ -118,10 +124,13 @@ export function ExpenseForm({
 	initialData,
 	onCancel,
 	isEditing = false,
-}: BaseFormProps) {
+}: ExpenseFormProps) {
 	const [description, setDescription] = useState(initialData?.description || '');
 	const [amount, setAmount] = useState(initialData?.amount || '');
 	const [date, setDate] = useState(initialData?.date || '');
+	const [category, setCategory] = useState<ExpenseCategory>(
+		initialData?.category || 'variaveis',
+	);
 
 	// Atualizar campos quando initialData mudar
 	useEffect(() => {
@@ -129,16 +138,18 @@ export function ExpenseForm({
 			setDescription(initialData.description);
 			setAmount(initialData.amount);
 			setDate(initialData.date);
+			setCategory(initialData.category || 'variaveis');
 		}
 	}, [initialData]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		onSubmit({ description, amount, date });
+		onSubmit({ description, amount, date, category });
 		if (!isEditing) {
 			setDescription('');
 			setAmount('');
 			setDate('');
+			setCategory('variaveis');
 		}
 	};
 
@@ -187,6 +198,24 @@ export function ExpenseForm({
 							className="w-full bg-stone-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 							required
 						/>
+					</div>
+					<div>
+						<label className="block text-stone-300 text-sm mb-2">
+							Categoria
+						</label>
+						<select
+							value={category}
+							onChange={(e) =>
+								setCategory(e.target.value as ExpenseCategory)
+							}
+							className="w-full bg-stone-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+							required
+						>
+							<option value="necessarios">Gastos Necessários</option>
+							<option value="variaveis">Gastos Variáveis</option>
+							{/* <option value="investimentos">Investimentos</option> */}
+							<option value="diversao">Diversão</option>
+						</select>
 					</div>
 				</div>
 				<div className="flex gap-2">

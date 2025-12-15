@@ -1,16 +1,32 @@
 import { PieChart } from 'lucide-react';
+import { useFinance } from '../../../contexts/useFinance';
 import Card from './Card';
 import CardHeader from './CardHeader';
 import DistributionItem from './DistributionItem';
+import { calculateTotal } from '../../../utils/financeCalculations';
+import { useMemo } from 'react';
 
-const distributions = [
-	{ label: 'Gastos Necessários', percentage: 50, color: 'bg-blue-500' },
-	{ label: 'Gastos Variáveis', percentage: 10, color: 'bg-purple-500' },
-	{ label: 'Investimentos', percentage: 30, color: 'bg-orange-500' },
-	{ label: 'Diversão', percentage: 10, color: 'bg-green-500' },
-];
+const categoryConfig = {
+	necessarios: { label: 'Gastos Necessários', color: 'bg-blue-500' },
+	variaveis: { label: 'Gastos Variáveis', color: 'bg-purple-500' },
+	investimentos: { label: 'Investimentos', color: 'bg-orange-500' },
+	diversao: { label: 'Diversão', color: 'bg-green-500' },
+} as const;
 
 export default function ExpenseDistributionCard() {
+	const { distribution, entries } = useFinance();
+
+	const totalEntries = useMemo(() => calculateTotal(entries), [entries]);
+
+	const maxAmounts = useMemo(() => {
+		return {
+			necessarios: (totalEntries * distribution.necessarios) / 100,
+			variaveis: (totalEntries * distribution.variaveis) / 100,
+			investimentos: (totalEntries * distribution.investimentos) / 100,
+			diversao: (totalEntries * distribution.diversao) / 100,
+		};
+	}, [totalEntries, distribution]);
+
 	return (
 		<Card
 			colSpan="col-span-12 md:col-span-6 lg:col-span-4"
@@ -24,13 +40,15 @@ export default function ExpenseDistributionCard() {
 				titleSize="md"
 				iconSize={20}
 			/>
+
 			<div className="space-y-4 overflow-hidden">
-				{distributions.map((dist) => (
+				{Object.entries(categoryConfig).map(([key, cfg]) => (
 					<DistributionItem
-						key={dist.label}
-						label={dist.label}
-						percentage={dist.percentage}
-						color={dist.color}
+						key={key}
+						label={cfg.label}
+						percentage={distribution[key as keyof typeof distribution]}
+						color={cfg.color}
+						maxAmount={maxAmounts[key as keyof typeof maxAmounts]}
 					/>
 				))}
 			</div>

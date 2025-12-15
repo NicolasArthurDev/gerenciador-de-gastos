@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Entradas from './pages/Entradas';
 import Despesas from './pages/Despesas';
 import Metas from './pages/Metas';
+import Redistribuicao from './pages/Redistribuicao';
 import NotFound from './pages/NotFound';
 import { FinanceProvider } from './contexts/FinanceContext';
 
@@ -19,6 +20,7 @@ function App() {
 						<Route path="/entradas" Component={Entradas}></Route>
 						<Route path="/despesas" Component={Despesas}></Route>
 						<Route path="/metas" Component={Metas}></Route>
+						<Route path="/redistribuicao" Component={Redistribuicao}></Route>
 						<Route path="*" Component={NotFound}></Route>
 					</Routes>
 				</BrowserRouter>

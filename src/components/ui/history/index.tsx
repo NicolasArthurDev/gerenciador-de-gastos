@@ -1,19 +1,31 @@
-interface HistoryProps {
-	type: 'entry' | 'expense';
-	items: Array<{
-		id: string;
-		description: string;
-		amount: string;
-		date: string;
-	}>;
+export type ExpenseCategory =
+	| 'necessarios'
+	| 'variaveis'
+	| 'investimentos'
+	| 'diversao';
+
+type HistoryItem = {
+	id: string;
+	description: string;
+	amount: string;
+	date: string;
+};
+
+type EntryHistoryProps = {
+	type: 'entry';
+	items: HistoryItem[];
 	onDelete: (id: string) => void;
-	onEdit?: (item: {
-		id: string;
-		description: string;
-		amount: string;
-		date: string;
-	}) => void;
-}
+	onEdit?: (item: HistoryItem) => void;
+};
+
+type ExpenseHistoryProps = {
+	type: 'expense';
+	items: Array<HistoryItem & { category: ExpenseCategory }>;
+	onDelete: (id: string) => void;
+	onEdit?: (item: HistoryItem & { category: ExpenseCategory }) => void;
+};
+
+type HistoryProps = EntryHistoryProps | ExpenseHistoryProps;
 
 export default function History({ type, items, onDelete, onEdit }: HistoryProps) {
 	const isEntry = type === 'entry';
@@ -23,6 +35,12 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 		: 'Nenhuma despesa registrada ainda.';
 	const colorClass = isEntry ? 'text-green-400' : 'text-red-400';
 	const prefix = isEntry ? '+' : '-';
+	const categoryLabels: Record<string, string> = {
+		necessarios: 'Gastos Necessários',
+		variaveis: 'Gastos Variáveis',
+		investimentos: 'Investimentos',
+		diversao: 'Diversão',
+	};
 
 	return (
 		<div className="bg-stone-800 rounded-xl border border-stone-700 overflow-hidden">
@@ -44,11 +62,24 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 								<p className="text-white font-medium">
 									{item.description}
 								</p>
-								<p className="text-stone-400 text-sm">
-									{new Date(item.date).toLocaleDateString(
-										'pt-BR',
+								<div className="flex flex-col">
+									<p className="text-stone-400 text-sm">
+										{new Date(item.date).toLocaleDateString(
+											'pt-BR',
+										)}
+									</p>
+									{!isEntry && (
+										<span className="text-xs text-stone-400">
+											{
+												categoryLabels[
+													(item as HistoryItem & {
+														category: ExpenseCategory;
+													}).category
+												]
+											}
+										</span>
 									)}
-								</p>
+								</div>
 							</div>
 							<div className="flex items-center gap-4">
 								<span
@@ -60,7 +91,7 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 								<div className="flex gap-2">
 									{onEdit && (
 										<button
-											onClick={() => onEdit(item)}
+											onClick={() => onEdit(item as HistoryItem & { category: ExpenseCategory })}
 											className="text-blue-400 hover:text-blue-300 px-3 py-1 rounded transition-colors"
 										>
 											Editar
@@ -76,8 +107,8 @@ export default function History({ type, items, onDelete, onEdit }: HistoryProps)
 							</div>
 						</div>
 					))
-				)}
-			</div>
+					)}
+				</div>
 		</div>
 	);
 }

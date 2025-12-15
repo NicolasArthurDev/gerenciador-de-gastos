@@ -13,6 +13,7 @@ export interface Expense {
 	description: string;
 	amount: string;
 	date: string;
+	category: ExpenseCategory;
 }
 
 export interface Goal {
@@ -23,6 +24,19 @@ export interface Goal {
 	deadline: string;
 }
 
+export type ExpenseCategory =
+	| 'necessarios'
+	| 'variaveis'
+	| 'investimentos'
+	| 'diversao';
+
+export interface ExpenseDistribution {
+	necessarios: number;
+	variaveis: number;
+	investimentos: number;
+	diversao: number;
+}
+
 interface FinanceContextType {
 	entries: Entry[];
 	expenses: Expense[];
@@ -30,6 +44,8 @@ interface FinanceContextType {
 	setEntries: React.Dispatch<React.SetStateAction<Entry[]>>;
 	setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 	setGoals: React.Dispatch<React.SetStateAction<Goal[]>>;
+	distribution: ExpenseDistribution;
+	setDistribution: React.Dispatch<React.SetStateAction<ExpenseDistribution>>;
 }
 
 const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
@@ -44,12 +60,31 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 
 	const [expenses, setExpenses] = useState<Expense[]>(() => {
 		const saved = localStorage.getItem('expenses');
-		return saved ? JSON.parse(saved) : [];
+		const parsed = saved ? JSON.parse(saved) : [];
+		// Garante que registros antigos recebam uma categoria padrao
+		return Array.isArray(parsed)
+			? parsed.map((expense) => ({
+					...expense,
+					category: expense.category || 'variaveis',
+			  }))
+			: [];
 	});
 
 	const [goals, setGoals] = useState<Goal[]>(() => {
 		const saved = localStorage.getItem('goals');
 		return saved ? JSON.parse(saved) : [];
+	});
+
+	const [distribution, setDistribution] = useState<ExpenseDistribution>(() => {
+		const saved = localStorage.getItem('expenseDistribution');
+		return saved
+			? JSON.parse(saved)
+			: {
+					necessarios: 50,
+					variaveis: 10,
+					investimentos: 30,
+					diversao: 10,
+			  };
 	});
 
 	useEffect(() => {
@@ -64,6 +99,10 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 		localStorage.setItem('goals', JSON.stringify(goals));
 	}, [goals]);
 
+	useEffect(() => {
+		localStorage.setItem('expenseDistribution', JSON.stringify(distribution));
+	}, [distribution]);
+
 	return (
 		<FinanceContext.Provider
 			value={{
@@ -73,6 +112,8 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 				setEntries,
 				setExpenses,
 				setGoals,
+				distribution,
+				setDistribution,
 			}}
 		>
 			{children}
