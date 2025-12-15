@@ -1,5 +1,7 @@
 import { Activity } from 'lucide-react';
 import { useFinance } from '../../../contexts/useFinance';
+import Card from './Card';
+import CardHeader from './CardHeader';
 
 export default function RecentActivityCard() {
 	const { entries, expenses } = useFinance();
@@ -12,13 +14,15 @@ export default function RecentActivityCard() {
 		.slice(0, 5);
 
 	return (
-		<div className="col-span-12 md:col-span-6 lg:col-span-4 bg-stone-800 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-stone-700">
-			<div className="flex items-center justify-between mb-3">
-				<h4 className="text-white font-semibold truncate">
-					Atividade Recente
-				</h4>
-				<Activity className="text-cyan-400 flex-shrink-0" size={20} />
-			</div>
+		<Card colSpan="col-span-12 md:col-span-6 lg:col-span-4">
+			<CardHeader
+				title="Atividade Recente"
+				icon={Activity}
+				iconColor="text-cyan-400"
+				titleSize="md"
+				iconSize={20}
+				mb="mb-3"
+			/>
 			<div className="space-y-2">
 				{allTransactions.length === 0 ? (
 					<p className="text-stone-400 text-sm text-center py-4">
@@ -47,6 +51,6 @@ export default function RecentActivityCard() {
 					))
 				)}
 			</div>
-		</div>
+		</Card>
 	);
 }

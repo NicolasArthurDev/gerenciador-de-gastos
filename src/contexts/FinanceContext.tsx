@@ -23,17 +23,13 @@ export interface Goal {
 	deadline: string;
 }
 
-export interface FinanceContextType {
+interface FinanceContextType {
 	entries: Entry[];
 	expenses: Expense[];
 	goals: Goal[];
-	addEntry: (entry: Entry) => void;
-	addExpense: (expense: Expense) => void;
-	addGoal: (goal: Goal) => void;
-	updateGoal: (id: string, currentAmount: string) => void;
-	deleteEntry: (id: string) => void;
-	deleteExpense: (id: string) => void;
-	deleteGoal: (id: string) => void;
+	setEntries: React.Dispatch<React.SetStateAction<Entry[]>>;
+	setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+	setGoals: React.Dispatch<React.SetStateAction<Goal[]>>;
 }
 
 const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
@@ -68,51 +64,15 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 		localStorage.setItem('goals', JSON.stringify(goals));
 	}, [goals]);
 
-	const addEntry = (entry: Entry) => {
-		setEntries([...entries, entry]);
-	};
-
-	const addExpense = (expense: Expense) => {
-		setExpenses([...expenses, expense]);
-	};
-
-	const deleteEntry = (id: string) => {
-		setEntries(entries.filter((entry) => entry.id !== id));
-	};
-
-	const deleteExpense = (id: string) => {
-		setExpenses(expenses.filter((expense) => expense.id !== id));
-	};
-
-	const addGoal = (goal: Goal) => {
-		setGoals([...goals, goal]);
-	};
-
-	const updateGoal = (id: string, currentAmount: string) => {
-		setGoals(
-			goals.map((goal) =>
-				goal.id === id ? { ...goal, currentAmount } : goal,
-			),
-		);
-	};
-
-	const deleteGoal = (id: string) => {
-		setGoals(goals.filter((goal) => goal.id !== id));
-	};
-
 	return (
 		<FinanceContext.Provider
 			value={{
 				entries,
 				expenses,
 				goals,
-				addEntry,
-				addExpense,
-				addGoal,
-				updateGoal,
-				deleteEntry,
-				deleteExpense,
-				deleteGoal,
+				setEntries,
+				setExpenses,
+				setGoals,
 			}}
 		>
 			{children}
