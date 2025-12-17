@@ -37,7 +37,7 @@ export default function ContasaPagar() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-    // Acho que é assim
+		// Acho que é assim
 		const billData: Bill = {
 			id: editingBill?.id || Date.now().toString(),
 			description,
@@ -60,7 +60,7 @@ export default function ContasaPagar() {
 		resetForm();
 	};
 
-  //Edicao
+	//Edicao
 	const handleEdit = (bill: Bill) => {
 		setEditingBill(bill);
 		setDescription(bill.description);
@@ -75,7 +75,7 @@ export default function ContasaPagar() {
 		resetForm();
 	};
 
-  //Calculo simpleszinho
+	//Calculo simpleszinho
 	const getDaysUntilDue = (dueDate: string) => {
 		const today = new Date();
 		today.setHours(0, 0, 0, 0);
@@ -283,7 +283,9 @@ export default function ContasaPagar() {
 							type="submit"
 							className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
 						>
-							{editingBill ? 'Atualizar Conta' : 'Adicionar Conta'}
+							{editingBill
+								? 'Atualizar Conta'
+								: 'Adicionar Conta'}
 						</button>
 						{editingBill && (
 							<button
@@ -325,9 +327,7 @@ export default function ContasaPagar() {
 									<div className="flex justify-between items-start gap-4">
 										<div className="flex-1">
 											<div className="flex items-center gap-2 mb-1">
-												<span
-													className={config.color}
-												>
+												<span className={config.color}>
 													{config.icon}
 												</span>
 												<p
@@ -344,8 +344,15 @@ export default function ContasaPagar() {
 													bill.currentInstallment &&
 													bill.totalInstallments && (
 														<span className="text-xs text-stone-400">
-															({bill.currentInstallment}/
-															{bill.totalInstallments})
+															(
+															{
+																bill.currentInstallment
+															}
+															/
+															{
+																bill.totalInstallments
+															}
+															)
 														</span>
 													)}
 											</div>
@@ -390,9 +397,9 @@ export default function ContasaPagar() {
 										<div className="flex items-center gap-3">
 											<span className="text-amber-400 font-semibold text-lg">
 												R${' '}
-												{parseFloat(bill.amount).toFixed(
-													2,
-												)}
+												{parseFloat(
+													bill.amount,
+												).toFixed(2)}
 											</span>
 											<div className="flex gap-1">
 												<button

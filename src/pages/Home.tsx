@@ -3,7 +3,6 @@ import RevenueCard from '../components/ui/dashboard/RevenueCard';
 import ExpensesCard from '../components/ui/dashboard/ExpensesCard';
 import ExpenseDistributionCard from '../components/ui/dashboard/ExpenseDistributionCard';
 import ExpenseAlertsCard from '../components/ui/dashboard/ExpenseAlertsCard';
-import ActiveCardsCard from '../components/ui/dashboard/ActiveCardsCard';
 import RecentActivityCard from '../components/ui/dashboard/RecentActivityCard';
 import SavingsGoalCard from '../components/ui/dashboard/SavingsGoalCard';
 import InvestmentsCard from '../components/ui/dashboard/InvestmentsCard';

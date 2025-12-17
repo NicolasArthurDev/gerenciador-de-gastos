@@ -25,7 +25,10 @@ function App() {
 							path="/redistribuicao"
 							Component={Redistribuicao}
 						></Route>
-						<Route path="/contas-a-pagar" Component={ContasaPagar}></Route>
+						<Route
+							path="/contas-a-pagar"
+							Component={ContasaPagar}
+						></Route>
 						<Route path="*" Component={NotFound}></Route>
 					</Routes>
 				</BrowserRouter>
