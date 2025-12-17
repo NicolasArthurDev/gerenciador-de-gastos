@@ -24,6 +24,19 @@ export interface Goal {
 	deadline: string;
 }
 
+export type BillType = 'parcelamento' | 'assinatura' | 'conta';
+
+export interface Bill {
+	id: string;
+	description: string;
+	amount: string;
+	dueDate: string;
+	type: BillType;
+	totalInstallments?: number; // Para parcelamentos
+	currentInstallment?: number; // Parcela atual
+	isPaid: boolean;
+}
+
 export type ExpenseCategory =
 	| 'necessarios'
 	| 'variaveis'
@@ -41,9 +54,11 @@ interface FinanceContextType {
 	entries: Entry[];
 	expenses: Expense[];
 	goals: Goal[];
+	bills: Bill[];
 	setEntries: React.Dispatch<React.SetStateAction<Entry[]>>;
 	setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 	setGoals: React.Dispatch<React.SetStateAction<Goal[]>>;
+	setBills: React.Dispatch<React.SetStateAction<Bill[]>>;
 	distribution: ExpenseDistribution;
 	setDistribution: React.Dispatch<React.SetStateAction<ExpenseDistribution>>;
 }
@@ -61,7 +76,6 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 	const [expenses, setExpenses] = useState<Expense[]>(() => {
 		const saved = localStorage.getItem('expenses');
 		const parsed = saved ? JSON.parse(saved) : [];
-		// Garante que registros antigos recebam uma categoria padrao
 		return Array.isArray(parsed)
 			? parsed.map((expense) => ({
 					...expense,
@@ -72,6 +86,11 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 
 	const [goals, setGoals] = useState<Goal[]>(() => {
 		const saved = localStorage.getItem('goals');
+		return saved ? JSON.parse(saved) : [];
+	});
+
+	const [bills, setBills] = useState<Bill[]>(() => {
+		const saved = localStorage.getItem('bills');
 		return saved ? JSON.parse(saved) : [];
 	});
 
@@ -102,6 +121,10 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 	}, [goals]);
 
 	useEffect(() => {
+		localStorage.setItem('bills', JSON.stringify(bills));
+	}, [bills]);
+
+	useEffect(() => {
 		localStorage.setItem(
 			'expenseDistribution',
 			JSON.stringify(distribution),
@@ -114,9 +137,11 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
 				entries,
 				expenses,
 				goals,
+				bills,
 				setEntries,
 				setExpenses,
 				setGoals,
+				setBills,
 				distribution,
 				setDistribution,
 			}}

@@ -3,6 +3,7 @@ import type {
 	Entry,
 	Expense,
 	Goal,
+	Bill,
 	ExpenseDistribution,
 } from './FinanceContext';
 import { FinanceContext } from './FinanceContext';
@@ -17,10 +18,12 @@ export function useFinance() {
 		entries,
 		expenses,
 		goals,
+		bills,
 		distribution,
 		setEntries,
 		setExpenses,
 		setGoals,
+		setBills,
 		setDistribution,
 	} = context;
 
@@ -78,10 +81,31 @@ export function useFinance() {
 		setDistribution(nextDistribution);
 	};
 
+	const addBill = (bill: Bill) => {
+		setBills([...bills, bill]);
+	};
+
+	const updateBill = (id: string, updatedBill: Bill) => {
+		setBills(bills.map((bill) => (bill.id === id ? updatedBill : bill)));
+	};
+
+	const deleteBill = (id: string) => {
+		setBills(bills.filter((bill) => bill.id !== id));
+	};
+
+	const toggleBillPaid = (id: string) => {
+		setBills(
+			bills.map((bill) =>
+				bill.id === id ? { ...bill, isPaid: !bill.isPaid } : bill,
+			),
+		);
+	};
+
 	return {
 		entries,
 		expenses,
 		goals,
+		bills,
 		distribution,
 		addEntry,
 		updateEntry,
@@ -93,6 +117,10 @@ export function useFinance() {
 		deleteEntry,
 		deleteExpense,
 		deleteGoal,
+		addBill,
+		updateBill,
+		deleteBill,
+		toggleBillPaid,
 		updateDistribution,
 	};
 }
