@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Sidebar from '../src/components/ui/sidebar';
+import { NAVIGATION_LINKS } from '../src/utils/navigation';
 
 describe('componente Sidebar', () => {
 	it('deve renderizar o título corretamente', () => {
@@ -20,9 +21,8 @@ describe('componente Sidebar', () => {
 				<Sidebar />
 			</BrowserRouter>,
 		);
-		expect(screen.getByText('Dashboard')).toBeInTheDocument();
-		expect(screen.getByText('Entradas')).toBeInTheDocument();
-		expect(screen.getByText('Despesas')).toBeInTheDocument();
-		expect(screen.getByText('Metas')).toBeInTheDocument();
+		NAVIGATION_LINKS.forEach((link) => {
+			expect(screen.getByText(link.label)).toBeInTheDocument();
+		});
 	});
 });

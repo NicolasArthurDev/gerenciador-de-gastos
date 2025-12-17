@@ -1,46 +1,9 @@
 import { CircleUserRound } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { NAVIGATION_LINKS } from '../../../utils/navigation';
 
 export default function Sidebar() {
 	const location = useLocation();
-
-	const links = [
-		{
-			id: 0,
-			label: 'Dashboard',
-			path: '/',
-		},
-		{
-			id: 1,
-			label: 'Entradas',
-			path: '/entradas',
-		},
-		{
-			id: 2,
-			label: 'Despesas',
-			path: '/despesas',
-		},
-		{
-			id: 3,
-			label: 'Contas a pagar',
-			path: '/contas-a-pagar',
-		},
-		{
-			id: 4,
-			label: 'Metas',
-			path: '/metas',
-		},
-		{
-			id: 5,
-			label: 'Investimentos',
-			path: '/investimentos',
-		},
-		{
-			id: 6,
-			label: 'Redistribuição',
-			path: '/redistribuicao',
-		},
-	];
 
 	return (
 		<aside
@@ -53,7 +16,7 @@ export default function Sidebar() {
 				<hr className="opacity-20" />
 				<nav className="w-full">
 					<ul className="flex flex-col gap-3 mt-6 w-full md:col-span-1">
-						{links.map((link) => {
+						{NAVIGATION_LINKS.map((link) => {
 							const isActive = location.pathname === link.path;
 							return (
 								<li key={link.id} className="w-full">
