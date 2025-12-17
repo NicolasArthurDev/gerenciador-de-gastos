@@ -88,14 +88,13 @@ export function EntryForm({
 					</div>
 					<div>
 						<label className="block text-stone-300 text-sm mb-2">
-							Data
+							Data (opcional)
 						</label>
 						<input
 							type="date"
 							value={date}
 							onChange={(e) => setDate(e.target.value)}
 							className="w-full bg-stone-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-							required
 						/>
 					</div>
 				</div>
@@ -193,14 +192,13 @@ export function ExpenseForm({
 					</div>
 					<div>
 						<label className="block text-stone-300 text-sm mb-2">
-							Data
+							Data (opcional)
 						</label>
 						<input
 							type="date"
 							value={date}
 							onChange={(e) => setDate(e.target.value)}
 							className="w-full bg-stone-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-							required
 						/>
 					</div>
 					<div>

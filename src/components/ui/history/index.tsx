@@ -69,9 +69,9 @@ export default function History({
 								</p>
 								<div className="flex flex-col">
 									<p className="text-stone-400 text-sm">
-										{new Date(item.date).toLocaleDateString(
-											'pt-BR',
-										)}
+										{item.date
+											? new Date(item.date).toLocaleDateString('pt-BR')
+											: 'Sem Data'}
 									</p>
 									{!isEntry && (
 										<span className="text-xs text-stone-400">
