@@ -7,6 +7,7 @@ import Despesas from './pages/Despesas';
 import Metas from './pages/Metas';
 import Redistribuicao from './pages/Redistribuicao';
 import ContasaPagar from './pages/ContasaPagar';
+import Investimentos from './pages/Investimentos';
 import NotFound from './pages/NotFound';
 import { FinanceProvider } from './contexts/FinanceContext';
 
@@ -28,6 +29,10 @@ function App() {
 						<Route
 							path="/contas-a-pagar"
 							Component={ContasaPagar}
+						></Route>
+						<Route
+							path="/investimentos"
+							Component={Investimentos}
 						></Route>
 						<Route path="*" Component={NotFound}></Route>
 					</Routes>

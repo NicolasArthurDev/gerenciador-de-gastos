@@ -20,10 +20,11 @@ export default function ExpenseDistributionCard() {
 
 	const maxAmounts = useMemo(() => {
 		return {
-			necessarios: (totalEntries * distribution.necessarios) / 100,
-			variaveis: (totalEntries * distribution.variaveis) / 100,
-			investimentos: (totalEntries * distribution.investimentos) / 100,
-			diversao: (totalEntries * distribution.diversao) / 100,
+			necessarios: (totalEntries * (distribution.necessarios || 0)) / 100,
+			variaveis: (totalEntries * (distribution.variaveis || 0)) / 100,
+			investimentos:
+				(totalEntries * (distribution.investimentos || 0)) / 100,
+			diversao: (totalEntries * (distribution.diversao || 0)) / 100,
 		};
 	}, [totalEntries, distribution]);
 

@@ -28,10 +28,10 @@ export default function Redistribuicao() {
 
 	const maxAmounts = useMemo(() => {
 		return {
-			necessarios: (totalEntries * draft.necessarios) / 100,
-			variaveis: (totalEntries * draft.variaveis) / 100,
-			investimentos: (totalEntries * draft.investimentos) / 100,
-			diversao: (totalEntries * draft.diversao) / 100,
+			necessarios: (totalEntries * (draft.necessarios || 0)) / 100,
+			variaveis: (totalEntries * (draft.variaveis || 0)) / 100,
+			investimentos: (totalEntries * (draft.investimentos || 0)) / 100,
+			diversao: (totalEntries * (draft.diversao || 0)) / 100,
 		};
 	}, [totalEntries, draft]);
 

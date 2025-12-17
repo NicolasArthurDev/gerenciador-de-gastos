@@ -12,15 +12,15 @@ const categoryConfig = {
 } as const;
 
 export default function ExpenseAlertsCard() {
-	const { expenses, distribution } = useFinance();
+	const { expenses, distribution, entries } = useFinance();
 
 	const alerts = useMemo(() => {
-		const totalExpenses = expenses.reduce(
-			(sum, expense) => sum + parseFloat(expense.amount || '0'),
+		const totalEntries = entries.reduce(
+			(sum, entry) => sum + parseFloat(entry.amount || '0'),
 			0,
 		);
 
-		if (totalExpenses === 0) return [];
+		if (totalEntries === 0) return [];
 
 		const categoryTotals: Record<keyof typeof categoryConfig, number> = {
 			necessarios: 0,
@@ -40,25 +40,28 @@ export default function ExpenseAlertsCard() {
 			percentage: number;
 			limit: number;
 			amount: number;
+			maxAmount: number;
 		}> = [];
 
 		Object.entries(categoryTotals).forEach(([key, amount]) => {
 			const categoryKey = key as keyof typeof categoryConfig;
-			const percentage = (amount / totalExpenses) * 100;
-			const limit = distribution[categoryKey];
+			const limit = distribution[categoryKey] || 0;
+			const maxAmount = (totalEntries * limit) / 100;
+			const percentage = (amount / totalEntries) * 100;
 
-			if (percentage > limit) {
+			if (amount > maxAmount) {
 				alertsList.push({
 					category: categoryKey,
 					percentage: Math.round(percentage * 100) / 100,
 					limit,
 					amount,
+					maxAmount,
 				});
 			}
 		});
 
 		return alertsList.sort((a, b) => b.percentage - a.percentage);
-	}, [expenses, distribution]);
+	}, [expenses, distribution, entries]);
 
 	return (
 		<Card colSpan="col-span-12 md:col-span-6 lg:col-span-4">
@@ -85,7 +88,9 @@ export default function ExpenseAlertsCard() {
 				) : (
 					alerts.map((alert) => {
 						const config = categoryConfig[alert.category];
-						const excess = alert.percentage - alert.limit;
+						const excessAmount = alert.amount - alert.maxAmount;
+						const excessPercentage =
+							(excessAmount / alert.maxAmount) * 100;
 
 						return (
 							<div
@@ -101,7 +106,7 @@ export default function ExpenseAlertsCard() {
 										</p>
 										<p className="text-stone-300 text-xs">
 											Ultrapassou o limite em{' '}
-											{excess.toFixed(2)}%
+											{excessPercentage.toFixed(2)}%
 										</p>
 									</div>
 									<AlertTriangle
