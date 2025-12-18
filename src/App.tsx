@@ -5,11 +5,11 @@ import Home from './pages/Home';
 import Entradas from './pages/Entradas';
 import Despesas from './pages/Despesas';
 import Metas from './pages/Metas';
+import { FinanceProvider } from './contexts/FinanceContext';
 import Redistribuicao from './pages/Redistribuicao';
 import ContasaPagar from './pages/ContasaPagar';
 import Investimentos from './pages/Investimentos';
 import NotFound from './pages/NotFound';
-import { FinanceProvider } from './contexts/FinanceContext';
 
 function App() {
 	return (

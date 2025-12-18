@@ -1,4 +1,3 @@
-import { CircleUserRound } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../../utils/navigation';
 
@@ -35,22 +34,6 @@ export default function Sidebar() {
 						})}
 					</ul>
 				</nav>
-			</div>
-			<div>
-				<hr className="opacity-20" />
-				<div className="flex flex-row mt-6 mb-6 gap-4 items-center">
-					<CircleUserRound size={40} />
-					<p className="text-lg ">Usuario</p>
-				</div>
-				<div className="flex flex-row justify-between">
-					<p className="text-stone-300 hover:text-white cursor-pointer">
-						Minha conta
-					</p>
-					<button className="text-red-500 hover:text-red-700 cursor-pointer">
-						Sair
-					</button>
-				</div>
-				<div className="mt-6 text-xs text-stone-300">v1.0.0</div>
 			</div>
 		</aside>
 	);
