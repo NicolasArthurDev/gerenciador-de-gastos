@@ -11,7 +11,7 @@ import ExchangeRatesCard from '../components/ui/dashboard/ExchangeRatesCard';
 
 export default function Home() {
 	return (
-		<main className="col-span-10 p-6 bg-stone-900 overflow-y-auto">
+		<main className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-10 p-6 bg-stone-900 overflow-y-auto">
 			<h2 className="text-2xl text-white font-semibold mb-6">
 				Dashboard Financeiro
 			</h2>

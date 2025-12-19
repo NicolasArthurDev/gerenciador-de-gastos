@@ -125,7 +125,7 @@ export default function ContasaPagar() {
 	);
 
 	return (
-		<main className="col-span-10 p-6 bg-stone-900 overflow-y-auto">
+		<main className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-10 p-6 bg-stone-900 overflow-y-auto">
 			<h3 className="text-2xl text-white font-semibold mb-6">
 				Contas a Pagar
 			</h3>

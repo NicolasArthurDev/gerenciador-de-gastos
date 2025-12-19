@@ -3,7 +3,7 @@ import { Home } from 'lucide-react';
 
 export default function NotFound() {
 	return (
-		<main className="col-span-10 p-6 bg-stone-900 overflow-y-auto flex items-center justify-center">
+		<main className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-10 p-6 bg-stone-900 overflow-y-auto flex items-center justify-center">
 			<div className="text-center">
 				<h1 className="text-6xl font-bold text-white mb-4">404</h1>
 				<h2 className="text-2xl font-semibold text-stone-300 mb-4">
