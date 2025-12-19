@@ -14,7 +14,7 @@ export default function RecentActivityCard() {
 		.slice(0, 5);
 
 	return (
-		<Card colSpan="col-span-12 md:col-span-6 lg:col-span-4 row-span-2">
+		<Card colSpan="col-span-12 md:col-span-6 lg:col-span-4">
 			<CardHeader
 				title="Atividade Recente"
 				icon={Activity}

@@ -8,6 +8,7 @@ import SavingsGoalCard from '../components/ui/dashboard/SavingsGoalCard';
 import InvestmentsCard from '../components/ui/dashboard/InvestmentsCard';
 import UpcomingBillsCard from '../components/ui/dashboard/UpcomingBillsCard';
 import ExchangeRatesCard from '../components/ui/dashboard/ExchangeRatesCard';
+import CategoryExpensesCard from '../components/ui/dashboard/CategoryExpensesCard';
 
 export default function Home() {
 	return (
@@ -24,6 +25,7 @@ export default function Home() {
 				<ExpenseDistributionCard />
 				<ExpenseAlertsCard />
 				<RecentActivityCard />
+				<CategoryExpensesCard />
 				<SavingsGoalCard />
 				<InvestmentsCard />
 				<UpcomingBillsCard />
