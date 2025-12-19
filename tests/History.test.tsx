@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import History from '../src/components/ui/history';
+import type { ExpenseCategory } from '../src/contexts/FinanceContext';
 
 describe('componente History', () => {
 	const mockOnDelete = vi.fn();
@@ -51,6 +52,7 @@ describe('componente History', () => {
 				description: 'Conta',
 				amount: '150',
 				date: '2025-12-01',
+				category: 'necessarios' as ExpenseCategory,
 			},
 		];
 		render(
@@ -67,6 +69,7 @@ describe('componente History', () => {
 				description: 'Conta',
 				amount: '150',
 				date: '2025-12-01',
+				category: 'necessarios' as ExpenseCategory,
 			},
 		];
 		render(
@@ -84,12 +87,14 @@ describe('componente History', () => {
 				description: 'Conta',
 				amount: '150',
 				date: '2025-12-01',
+				category: 'necessarios' as ExpenseCategory,
 			},
 			{
 				id: '2',
 				description: 'Aluguel',
 				amount: '1200',
 				date: '2025-12-01',
+				category: 'necessarios' as ExpenseCategory,
 			},
 		];
 
