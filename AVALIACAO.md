@@ -10,13 +10,17 @@
 
 ## Avaliações
 
-| entrega      | data       | commit  | nota       | peso |
-| ------------ | ---------- | ------- | ---------- | ---- |
-| 1            | 26/11/2025 | 1bc4031 | 9/10       | 1    |
-| 2            | 10/12/2025 | 9f45914 | 7,8/10     | 2    |
-| 3            |            |         | --/10      | 3    |
-| apresentação |            |         | --/10      | 4    |
-| **total**    |            |         | **2,5/10** |      |
+| entrega      | data       | commit           | nota       | peso |
+| ------------ | ---------- | ---------------- | ---------- | ---- |
+| 1            | 26/11/2025 | 1bc4031          | 9/10       | 1    |
+| 2            | 10/12/2025 | 9f45914          | 7,8/10     | 2    |
+| 3            |            |                  | 7,7/10     | 3    |
+| apresentação |            | Luis Renato      | 8/10       | 4    |
+| **total**    |            |                  | **8/10**   |      |
+| apresentação |            | Nicolas Oliveira | 8,5/10     | 4    |
+| **total**    |            |                  | **8,2/10** |      |
+| apresentação |            | Nicolas Pitz     | 7,3/10     | 4    |
+| **total**    |            |                  | **7,7/10** |      |
 
 ## Entrega 1
 
@@ -87,3 +91,32 @@
   - Padronizem os nomes dos arquivos. Alguns `NomeDoComponente.tsx` e outros `NomeDoCompnente/index.tsx`. Usem apenas um estilo.
   - Dentro do `FinanceContext` vocês colocaram funções para tratamento dos estados e no hook `useFinanceContext` vocês apenas disponibilizaram o contexto. Sugiro mover essas funções para o hook para organização de código.
   - Coloquem uma rota coringa (`*`) caso seja digitado um endereço inválido
+
+## Entraga 3
+
+- a.Funcionalidades principais implementadas conforme escopo definido
+
+  - RF1 - atendido.
+  - RF2 - atendido.
+  - RF3 - não atendido.
+  - RF4 - não atendido.
+  - RF5 - não atendido.
+  - RF6 - atendido.
+
+- b. Requisitos não funcionais
+
+  - RNF1 - atendido.
+  - RNF2 - atendido.
+  - RNF3 - atendido.
+  - RNF4 - parcial.
+    - O README não traz instruções de execução ou estrutura do projeto.
+  - RNF5 - atendido.
+
+- c. Testes
+
+  - atendido.
+
+- d. Qualidade do código
+
+  - Valores monetários estão tipados como `string` (`amount: string`). Em geral é melhor armazenar como `number` internamente e formatar na UI, para evitar bugs de soma/ordenação.
+  - Há `console.error` no `ExchangeRatesCard`.
